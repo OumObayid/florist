@@ -1,0 +1,144 @@
+body {
+  background-color: #f8f9fa;
+  font-family: 'Arial', sans-serif;
+}
+
+.title {
+  color: #2a272b; /* Violet chic */
+  font-family: 'Cursive', sans-serif;
+  font-size: 36px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+h2 {
+  color: #8b7e85;
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.container {
+  background: url('/assets/images/bgform.jpg') no-repeat center center/cover;
+  background-size: cover;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.form-group label {
+  color: #8b7e85;
+  font-weight: bold;
+}
+
+.form-control {
+  border-radius: 10px;
+  border: 1px solid #8b7e85;
+}
+
+form {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Bouton floral */
+.btn-floral {
+  background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+  transition: 0.3s;
+  width: 10rem;
+}
+
+.btn-floral:hover {
+  background: linear-gradient(45deg, #fad0c4, #ff9a9e);
+  transform: scale(1.05);
+}
+/* ////////////////// */
+/* Style général du dropdown */
+.dropdown {
+  border-radius: 8px; /* Coins arrondis */
+  font-size: 16px;
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+
+/* Style des options du dropdown */
+select.dropdown option {
+  background-color: rgb(246, 242, 216);
+  color: #333;
+}
+
+/* Style du dropdown lorsqu'on clique dessus */
+select.dropdown:hover {
+  cursor: pointer;
+}
+
+/* Style spécifique pour les appareils mobiles */
+@media (max-width: 768px) {
+  .dropdown {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+/* ///////////////// */
+
+.table {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+th {
+  background-color: #8b7e85;
+  color: white;
+  text-align: center;
+  padding: 12px;
+}
+
+td {
+  text-align: center;
+  padding: 10px;
+}
+
+.product-description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.product-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.btn-warning {
+  background-color: #FFC107;
+  border-color: #FFC107;
+}
+
+.btn-danger {
+  background-color: #F44336;
+  border-color: #F44336;
+}
+
+.btn-warning:hover, .btn-danger:hover {
+  opacity: 0.8;
+}
+
+.table-striped tbody tr:nth-child(odd) {
+  background-color: #f1e6f2;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f8f1fc;
+}

@@ -1,0 +1,124 @@
+<section
+  class="h-100 d-flex align-items-center"
+  style="background-color: #ede3ea; min-height: 100vh; margin-top: 100px"
+>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div
+        class="col-lg-10"
+        style="box-shadow: 15px 10px 15px 10px rgba(39, 36, 36, 0.149)"
+      >
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <!-- Partie gauche (formulaire) -->
+            <div class="col-md-6 p-5">
+              <div class="text-center mb-4">
+                <img
+                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                  style="width: 150px"
+                  alt="logo"
+                />
+                <h4 class="mt-3">Welcome to FlowerShop</h4>
+              </div>
+
+              <form (ngSubmit)="onRegister()">
+                <div class="mb-3">
+                  <label class="form-label" for="lastname">Nom</label>
+                  <input
+                    type="text"
+                    name="lastname"
+                    class="form-control"
+                    [(ngModel)]="lastname"
+                    required
+                    placeholder="Enter your last name"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="firstname">Prénom</label>
+                  <input
+                    type="text"
+                    name="firstname"
+                    class="form-control"
+                    [(ngModel)]="firstname"
+                    required
+                    placeholder="Enter your first name"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label" for="phone">Phone</label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    class="form-control"
+                    [(ngModel)]="phone"
+                    required
+                    placeholder="Enter your phone number"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label" for="email">Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    [(ngModel)]="email"
+                    required
+                    placeholder="Enter your email"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label" for="password">Password</label>
+                  <input
+                    type="password"
+                    name="password"
+                    class="form-control"
+                    [(ngModel)]="password"
+                    required
+                    placeholder="Enter your password"
+                  />
+                </div>
+                <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+                <p *ngIf="successMessage" class="success">
+                  {{ successMessage }}
+                </p>
+                <div class="text-center">
+                  <button
+                    class="btnLogin btn btn-primary btn-block w-100 mb-3 border-0 gradient-custom-2"
+                    type="submit"
+                  >
+                    Register
+                  </button>
+
+                  <a class="text-muted" href="#">Forgot password?</a>
+                </div>
+
+                <div class="text-center mt-4">
+                  <p>
+                    Vous n'avez pas de compte ?
+                    <a class="btnAuth" routerLink="/login"> Se connecter </a>
+                  </p>
+                </div>
+              </form>
+            </div>
+
+            <!-- Partie droite (information) -->
+            <div
+              class="col-md-6 d-flex align-items-center gradient-custom-2 text-white p-4"
+            >
+              <div>
+                <h4 class="mb-4">La beauté des fleurs à votre porte</h4>
+                <p>
+                  Découvrez nos bouquets frais et personnalisés pour chaque
+                  occasion. Livraison rapide et soin garanti !
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

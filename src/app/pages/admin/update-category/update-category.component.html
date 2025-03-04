@@ -1,0 +1,27 @@
+<h2 class="text-center mb-4">Modifier la catégorie</h2>
+
+<div class="container floral-form">
+  <form (ngSubmit)="updateCategory()">
+    <!-- Nom -->
+    <div class="form-group">
+      <label for="nom">Nom de la Catégorie</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="nom"
+        name="nom"
+        required
+      />
+    </div>
+
+    <!-- Boutons -->
+    <div class="text-center mt-4">
+      <button type="submit" class="btn btn-success">
+        Enregistrer
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="cancelEdit()">
+        Annuler
+      </button>
+    </div>
+  </form>
+</div>

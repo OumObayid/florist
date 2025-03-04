@@ -1,0 +1,74 @@
+<div class="contact-header text-center py-5">
+  <div class="contact-content">
+    <h1 class="text-white">Nous Contacter</h1>
+    <p class="text-white">Chez Flower's Oum, nous sommes à votre écoute</p>
+  </div>
+</div>
+
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="contact-form">
+        <h3 class="text-center mb-4">Formulaire de Contact</h3>
+        <form (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="name" class="form-label">Votre Nom</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              [(ngModel)]="name"
+              name="name"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Votre Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              [(ngModel)]="email"
+              name="email"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Votre Message</label>
+            <textarea
+              class="form-control"
+              id="message"
+              [(ngModel)]="message"
+              name="message"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-custom">
+              Envoyer le Message
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Google Map Section -->
+<div class="container map-container my-5">
+  <h3 class="text-center mb-4">Retrouvez-nous à notre adresse :</h3>
+  <div class="row justify-content-center my-5">
+    <div class="col-md-10">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.278301531436!2d2.292292315674062!3d48.85884477928789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671d25fd0c6f5%3A0x6e6b6f777757340!2sTour%20Eiffel!5e0!3m2!1sfr!2sfr!4v1615242782262!5m2!1sfr!2sfr"
+        width="100%"
+        height="400"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+      ></iframe>
+    </div>
+  </div>
+</div>
+

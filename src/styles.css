@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+ /* Pour éviter que le contenu soit caché par la navbar fixe */
+ /* Pour éviter que le contenu soit caché par la navbar fixe */
+ body {
+    /* padding-top: 140px;  */
+    /* Ajuster selon la hauteur de topbar + navbar */
+    background-color: #f7f7f7;
+  }
+ 
+
+/* Applique un fond spécifique pour la page de connexion */
+body.login-page {
+  background-color: #eee !important; /* Fond gris clair uniquement pour login */
+}
+
+/* -------------css for scrollbar-------- */
+/* Track */
+#container-scroll::-webkit-scrollbar-track {
+  /* background: #f1f1f1;  */
+  background: var(--blackmarin);
+}
+/* Handle on hover */
+#container-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--orange);
+  -webkit-animation: scrollbig 1s;
+}
+#container-scroll::-webkit-scrollbar {
+  width: 0.93rem;
+  height: 7.5rem;
+}
+
+ #container-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #d5941c, var(--orange), #d5941c);
+  border-radius: 0.93rem;
+  box-shadow: inset 0.12rem 0.12rem 0.12rem #ffffff40, inset -0.12rem -0.12rem 0.12rem #00000040;
+} 
+@media screen and (max-width: 767px) {
+  *::-webkit-scrollbar {
+    display: none !important;
+  }
+} 
+/* -----end--------css for scrollbar-------- */

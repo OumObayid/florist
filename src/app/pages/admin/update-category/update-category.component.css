@@ -1,0 +1,68 @@
+.floral-form {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    position: relative; /* Permet de positionner l'élément avant */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.39);
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 20px;
+    overflow: hidden; /* Empêche le flou de dépasser */
+}
+
+.floral-form::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/assets/images/bgform.jpg') no-repeat center center/cover;
+    filter: blur(2px); /* Ajuste l'intensité du flou */
+    z-index: -1; /* Met l'image floutée derrière le contenu */
+}
+
+
+
+
+h2 {
+    font-family: 'Dancing Script', cursive;
+    color: #352b2c;
+}
+
+label {
+    font-weight: bold;
+    color: #433f3e;
+}
+
+.form-control {
+    border-radius: 8px;
+    /* border: 1px solid #d47483; */
+}
+
+.form-control:focus {
+    border-color: #e6c2bf;
+    box-shadow: 0 0 8px #f5b7b1;
+}
+
+.preview-img {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 10px;
+    border: 2px solid #73726b58;
+}
+
+.btn-success {
+    background: #76c893;
+    border: none;
+}
+
+.btn-danger {
+    background: #e76f51;
+    border: none;
+}
+
+.btn-success:hover,
+.btn-danger:hover {
+    opacity: 0.8;
+}

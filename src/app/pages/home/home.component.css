@@ -1,0 +1,107 @@
+/* Bannière */
+.home-banner {
+  position: relative;
+  background: url('/assets/images/header3.jpg') center/cover no-repeat;
+  height: 400px;
+  text-align: center;
+  padding-top: 150px;
+  color: white;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+}
+
+.home-banner:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 0;
+}
+
+.content-banner {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-custom {
+  background-color: #8b3e15;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+  background-color: #c5a37e;
+  transform: scale(1.1);
+}
+
+/* Section Avis */
+.avis-clients {
+  background: linear-gradient(135deg, #e592ae, #495128, #553824);
+  color: white;
+  padding: 50px 0;
+  border-radius: 15px;
+}
+
+.testimonial {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(39, 37, 32, 0.9);
+  border-radius: 50%;
+}
+
+/* Section Produits */
+.card-img-top {
+  height: 250px;
+  object-fit: cover;
+}
+
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+  /* Bouton floral */
+  .btn-flower {
+    background: #b8bd7c;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    transition: 0.3s ease-in-out;
+    border: 2px solid white;
+    width: 10rem;
+  }
+  
+  .btn-flower:hover {
+    background: #c5c375;
+    transform: scale(1.05);
+  }
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre tous les éléments */
+    justify-content: space-between; /* Garde une répartition équilibrée */
+  }
+  
+  .btn-flower {
+    width: 60%; /* Pour que le bouton prenne une bonne largeur */
+    text-align: center;
+  }
+  

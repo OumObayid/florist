@@ -1,0 +1,60 @@
+<div class="wrapper">
+  <!-- Sidebar -->
+  <nav
+    id="sidebar"
+    class="bg-light shadow-lg"
+    [ngClass]="{ 'sidebar-hidden': !isSidebarOpen }"
+  >
+    <div class="sidebar-header text-center py-4">
+      <img
+        src="assets/images/profile.jpg"
+        alt="Admin Profile"
+        class="profile-img"
+      />
+      <h5 class="text-white font-weight-bold mt-2">
+        {{ user?.firstname }} {{ user?.lastname }}
+      </h5>
+    </div>
+    <ul class="list-unstyled components">
+      <li>
+        <a
+          routerLink="users"
+          routerLinkActive="active"
+          class="text-white font-weight-bold"
+          >👥 Users</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="products"
+          routerLinkActive="active"
+          class="text-white font-weight-bold"
+          >🌿 Products</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="categories"
+          routerLinkActive="active"
+          class="text-white font-weight-bold"
+          >📂 Categories</a
+        >
+      </li>
+    </ul>
+  </nav>
+
+  <div class="btn-toggle">
+    <button
+      id="sidebarToggle"
+      class="btn btn-transparent toggle-btn"
+      (click)="toggleSidebar()"
+    >
+      ☰
+    </button>
+  </div>
+
+  <!-- Page Content -->
+  <div class="container mt-4">
+    <router-outlet></router-outlet>
+  </div>
+</div>

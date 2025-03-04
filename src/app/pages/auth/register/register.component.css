@@ -1,0 +1,16 @@
+.gradient-custom-2 {
+    background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+    color: white;
+}
+.btnLogin:hover{
+   box-shadow: 0 0 10px #ee782400, 0 0 40px #ee782491, 0 0 10px #c7703185;
+}
+
+.btnAuth{
+    color: #d8363a;
+}
+.btnAuth:hover{
+    background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+    color: white;
+    text-decoration: none;
+}

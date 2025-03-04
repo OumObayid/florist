@@ -1,0 +1,68 @@
+/* Style général */
+.about-container {
+    background-color: #fdf7f2;
+    padding-bottom: 50px;
+  }
+  
+  /* Bannière */
+  .about-banner {
+    background: url('/assets/images/banner3.JPG') center/cover no-repeat;
+    text-align: center;
+    margin: 70px;
+    color: rgb(255, 255, 255);
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.542); 
+  }
+  .about-banner::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 70px;
+    width: 100%;
+    height: 360px;
+    /* background: rgba(0, 0, 0, 0.459);  */
+    z-index: 0; /* L'ombre passe derrière le texte et le bouton */
+  
+  }
+  .about-banner h1{
+    position: relative; /* Permet au contenu de se positionner au-dessus de l'image sombre */
+    z-index: 1; /* Le contenu est au-dessus de l'image et de la superposition sombre */
+  
+  }
+  
+  /* Texte */
+  .about-text {
+    padding: 20px;
+  }
+  
+  .about-text h2 {
+    color: #a0522d;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+  
+  .about-text p {
+    font-size: 1.1rem;
+    color: #5a5a5a;
+    line-height: 1.6;
+  }
+  
+  /* Bouton */
+  .btn-custom {
+    background-color: #a0522d;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.1rem;
+  }
+  
+  .btn-custom:hover {
+    background-color: #8b3e15;
+    transform: scale(1.05);
+  }
+  

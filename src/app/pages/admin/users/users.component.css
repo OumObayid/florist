@@ -1,0 +1,67 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .title {
+    color: #2a272b; /* Violet chic */
+    font-family: 'Cursive', sans-serif;
+    font-size: 36px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+  }
+  
+  .table {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  th {
+    background-color: #8b7e85;
+    color: white;
+    text-align: center;
+    padding: 12px;
+  }
+  
+  td {
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .product-description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px; /* Ajuste la largeur max de la description */
+  }
+  
+  .product-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .btn-warning {
+    background-color: #FFC107;
+    border-color: #FFC107;
+  }
+  
+  .btn-danger {
+    background-color: #F44336;
+    border-color: #F44336;
+  }
+  
+  .btn-warning:hover, .btn-danger:hover {
+    opacity: 0.8;
+  }
+  
+  .table-striped tbody tr:nth-child(odd) {
+    background-color: #f1e6f2; /* Légère couleur de fond pour l'effet rayé */
+  }
+  
+  .table-hover tbody tr:hover {
+    background-color: #f8f1fc; /* Légère mise en surbrillance au survol */
+  }
+  
