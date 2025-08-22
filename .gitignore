@@ -40,3 +40,9 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Fichier .env dans ton dossier API
+api/.env
+
+# Environment Angular (prod)
+src/environments/environment.prod.ts
