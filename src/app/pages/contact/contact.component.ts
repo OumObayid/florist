@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BannerTitleComponent } from "../../components/banner-title/banner-title.component";
+import { ButtonComponent } from "../../components/button/button.component";
 
 @Component({
   selector: 'app-contact',
-  imports: [FormsModule],
+  imports: [FormsModule, BannerTitleComponent, ButtonComponent],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css'
 })

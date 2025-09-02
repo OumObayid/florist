@@ -1,0 +1,162 @@
+<app-template-dashboard [title]="'Mes informations'">
+  <!-- Informations personnelles -->
+  <div class="card mb-4 p-3 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h5>Mes informations</h5>
+      <app-button
+        [label]="editMode ? 'Annuler' : 'Modifier'"
+        (clicked)="editMode = !editMode"
+      >
+      </app-button>
+      <!-- <button class="btn btn-outline-primary btn-sm" (click)="editMode = !editMode">
+        {{ editMode ? 'Annuler' : 'Modifier' }}
+      </button> -->
+    </div>
+    <form
+      *ngIf="editMode; else readMode"
+      #saveUserInfoForm="ngForm"
+      (ngSubmit)="saveUserInfo(saveUserInfoForm)"
+    >
+      <div class="row mb-2">
+        <div class="col-md-6">
+          <label>Prénom</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="userEdit.firstname"
+            name="firstname"
+          />
+        </div>
+        <div class="col-md-6">
+          <label>Nom</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="userEdit.lastname"
+            name="lastname"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <div class="col-md-6">
+          <label>Email</label>
+          <input
+            type="email"
+            class="form-control"
+            [(ngModel)]="userEdit.email"
+            name="email"
+          />
+        </div>
+        <div class="col-md-6">
+          <label>Téléphone</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="userEdit.phone"
+            name="phone"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <div class="col-12">
+          <label>Adresse</label>
+          <textarea
+            class="form-control"
+            [(ngModel)]="userEdit.address"
+            name="address"
+          ></textarea>
+        </div>
+      </div>
+      <div class="text-center">
+      <app-button
+        [disabled]="isloading"
+        [label]="isloading ? 'En cours...' : 'Enregistrer'"
+        type="submit"
+        customClass="mt-2"
+      ></app-button>
+      </div>
+    </form>
+
+    <!-- Mode lecture -->
+    <ng-template #readMode>
+      <div class="row mb-1">
+        <div class="col-md-6">
+          <strong>Prénom:</strong> {{ userEdit.firstname }}
+        </div>
+        <div class="col-md-6">
+          <strong>Nom:</strong> {{ userEdit.lastname }}
+        </div>
+      </div>
+      <div class="row mb-1">
+        <div class="col-md-6"><strong>Email:</strong> {{ userEdit.email }}</div>
+        <div class="col-md-6">
+          <strong>Téléphone:</strong> {{ userEdit.phone }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <strong>Adresse:</strong> {{ userEdit.address }}
+        </div>
+      </div>
+      <div
+        *ngIf="successMessage"
+        class="alert text-center alert-success py-1 mt-2"
+      >
+        {{ successMessage }}
+      </div>
+      <div
+        *ngIf="errorMessage"
+        class="alert text-center alert-danger py-1 mt-2"
+      >
+        {{ errorMessage }}
+      </div>
+    </ng-template>
+  </div>
+
+  <!-- Changement de mot de passe -->
+  <div class="card p-3 shadow-sm">
+    <h5>Changer le mot de passe</h5>
+    <form (ngSubmit)="changePassword()">
+      <div class="mb-2">
+        <label>Ancien mot de passe</label>
+        <input
+          type="password"
+          class="form-control"
+          [(ngModel)]="oldPassword"
+          name="oldPassword"
+          required
+        />
+      </div>
+      <div class="mb-2">
+        <label>Nouveau mot de passe</label>
+        <input
+          type="password"
+          class="form-control"
+          [(ngModel)]="newPassword"
+          name="newPassword"
+          required
+        />
+      </div>
+      <div
+        *ngIf="successMessagePw"
+        class="alert text-center alert-success py-1 mt-2"
+      >
+        {{ successMessagePw }}
+      </div>
+      <div
+        *ngIf="errorMessagePw"
+        class="alert text-center alert-danger py-1 mt-2"
+      >
+        {{ errorMessagePw }}
+      </div>
+      <div class="text-center">
+      <app-button
+        [disabled]="isloading"
+        [label]="isloading ? 'En cours...' : 'Modifier le mot de passe'"
+        type="submit"
+      ></app-button></div>
+    </form>
+  </div>
+</app-template-dashboard>

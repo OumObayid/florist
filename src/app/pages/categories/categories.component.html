@@ -1,0 +1,26 @@
+<app-banner-title
+  [title]="'Tous les categories de Flowers Oum'"
+  [underTitle]="
+    'Des bouquets variés, classés par catégories pour chaque moment.'
+  "
+>
+</app-banner-title>
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-4 mt-2" *ngFor="let categorie of categories">
+      <div class="card categorie-card">
+        <img [src]="categorie.image" class="card-img-top categorie-img" alt="{{ categorie.nom }}">
+        <div class="card-body ">
+          <h5 class="card-title">{{ categorie.nom }}</h5>
+         
+          <app-link-button
+          [routerLink]="['/categorie-details', categorie.id]"
+          label="Voir Détails"
+          customClass="mt-3"
+          >            
+          </app-link-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,13 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { RegisterService } from '../../../services/auth/register.service';
 import { Store } from '@ngrx/store';
+import { BannerTitleComponent } from "../../../components/banner-title/banner-title.component";
+import { ButtonComponent } from "../../../components/button/button.component";
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-register',
-  imports: [CommonModule, FormsModule,RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, BannerTitleComponent, ButtonComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -19,16 +21,28 @@ export class RegisterComponent {
   phone: string = '';
   errorMessage: string | null = null;
   successMessage: string | null = null;
-
+isloading:boolean=false;
   constructor(
-      private registerService: RegisterService,
+      private authService: AuthService,
       public router: Router,
       private store: Store
     ) {}
 
-    onRegister() {
-      this.registerService
-        .register(this.firstname, this.lastname, this.email, this.password, this.phone)
+    onRegister(form: NgForm) {
+       if (!form.valid) {
+    this.errorMessage = 'Veuillez remplir tous les champs obligatoires.';
+    return;
+  }
+      this.isloading=true;
+      const data={
+        firstname:this.firstname, 
+        lastname:this.lastname, 
+        email:this.email, 
+        password:this.password, 
+        phone:this.phone
+      }
+      this.authService
+      .register(data)
         .subscribe({
           next: (response) => {
             if (response.success) {
@@ -40,6 +54,9 @@ export class RegisterComponent {
           },
           error: () => {
             this.errorMessage = 'Erreur de connexion au serveur';
+          },
+          complete: ()=> {
+            this.isloading=false;
           },
         });
     }

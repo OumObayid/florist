@@ -1,0 +1,32 @@
+<div *ngIf="isLoading" class="text-center my-4">Chargement des produits...</div>
+<div *ngIf="!isLoading" class="container w-100">
+  <div class="row my-3">
+    <div *ngIf="cartItems && cartItems.length > 0; else paniervide">
+      <div *ngFor="let itemData of cartItems">
+        <app-cart-item [cartItem]="itemData"></app-cart-item>
+      </div>
+    </div>
+    <ng-template #paniervide>
+      <div class="text-center my-5">
+        <p class="fs-5">Votre panier est vide 😔</p>
+        <p class="text-muted">
+          Découvrez nos produits et ajoutez vos favoris pour commencer votre
+          commande !
+        </p>
+        <div class="d-md-flex justify-content-center gap-3 pt-5">
+          <app-link-button
+            label="Voir les produits"
+            routerLink="/products"
+            (click)="handleCloseCart()"
+          ></app-link-button>
+          <app-link-button
+            label="Voir les categories"
+            routerLink="/categories"
+            customClass="btn-rouge-brique mt-md-0 mt-4"
+            (click)="handleCloseCart()"
+          ></app-link-button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

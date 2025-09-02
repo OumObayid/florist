@@ -1,0 +1,55 @@
+<app-banner-title
+  [title]="'Catégorie ' + (categorie?.nom || '')"
+  [underTitle]="'Découvrez nos variétés soigneusement sélectionnées'"
+>
+</app-banner-title>
+<div class="container my-5">
+  <div class="row align-items-center my-5">
+    <!-- Image de la catégorie -->
+    <div class="col-lg-6 mb-4 mb-lg-0 text-center">
+      <img
+        *ngIf="categorie?.image"
+        [src]="categorie?.image"
+        alt="{{ categorie?.nom }}"
+        class="img-fluid rounded shadow categorie-detail-img"
+      />
+    </div>
+
+    <!-- Informations de la catégorie -->
+    <div class="col-lg-6">
+      <h2 class="h3 mb-3 text-primary">{{ categorie?.nom }}</h2>
+      <p class="lead">
+        {{ categorie?.description }}
+      </p>
+    </div>
+  </div>
+
+  <hr class="my-4" />
+
+  <div class="container my-5">
+    <h3 class="mb-4 text-center">Produits de cette catégorie</h3>
+
+    <div class="product-carousel">
+      <div class="product-track">
+        <div class="card product-item" *ngFor="let product of products">
+          <img
+            [src]="product.image"
+            class="card-img-top"
+            alt="{{ product.nom }}"
+          />
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ product.nom }}</h5>
+            <p class="card-text fw-bold">
+              {{ product.prix | currency : "EUR" }}
+            </p>
+           
+            <app-link-button
+              label="Voir le produit"
+              [routerLink]="['/product-details', product.id]"
+            ></app-link-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,20 +7,34 @@
         <div class="col-12">
           <ul class="social-network">
             <li>
-              <a class="waves-effect waves-dark" href="#">
-                <i class="fa fa-facebook"></i>
+              <a class="waves-effect waves-dark" href="#" aria-label="Facebook">
+                <i class="fab fa-facebook"></i>
               </a>
             </li>
-            <li>
-              <a class="waves-effect waves-dark" href="#"
-                ><i class="fa fa-twitter"></i
-              ></a>
+
+            <li class="ms-3">
+              <a class="waves-effect waves-dark" href="#" aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
+              </a>
             </li>
-            <li>
-            <li>
-              <a class="waves-effect waves-dark" href="#"
-                ><i class="fa fa-google-plus"></i
-              ></a>
+            <li class="ms-3">
+              <a
+                class="waves-effect waves-dark"
+                href="#"
+                aria-label="Instagram"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+            </li>
+            <li class="ms-3">
+              <a class="waves-effect waves-dark" href="#" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+              </a>
+            </li>
+            <li class="ms-3">
+              <a class="waves-effect waves-dark" href="#" aria-label="YouTube">
+                <i class="fab fa-youtube"></i>
+              </a>
             </li>
           </ul>
         </div>
@@ -31,108 +45,250 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
     <div class="container">
-      <a class="logo" [ngClass]="{ active: router.url === '/' }" routerLink="/"
-        >Flower's Oum</a
+      <!-- Logo -->
+      <a
+        class="logo"
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
+        Flower's Oum
+      </a>
+
       <button
         class="navbar-toggler"
         type="button"
-        data-toggle="collapse"
-        data-target="#navbarResponsive"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarResponsive"
         aria-controls="navbarResponsive"
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a [ngClass]="{ active: router.url === '/' }" routerLink="/"
-              >Home <span class="sr-only">(current)</span></a
-            >
-          </li>
-          <li>
-            <a
-              [ngClass]="{ active: router.url === '/about' }"
-              routerLink="/about"
-              >À propos
-            </a>
-          </li>
-          <li>
-            <a
-              [ngClass]="{ active: router.url === '/contact' }"
-              routerLink="/contact"
-              >Contact
-            </a>
-          </li>
-          <ng-container *ngIf="!isloggedIn">
-            <li>
-              <a
-                [ngClass]="{ active: router.url === '/login' }"
-                routerLink="/login"
-                >Login
-              </a>
-            </li>
-            <li>
-              <a
-                [ngClass]="{ active: router.url === '/register' }"
-                routerLink="/register"
-                >Register
-              </a>
-            </li>
-          </ng-container>
 
-          <li class="nav-item dropdown">
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
             <a
-              *ngIf="isloggedIn"
-              class="dropdown-toggle"
+              routerLink="/"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              Accueil <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+
+          <li class="nav-item dropdown item-products" routerLinkActive="active">
+            <a
+              class="nav-link dropdown-toggle pt-md-0"
               href="#"
               id="navbarDropdown"
               role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
+              data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              {{ lastName }}
+              Produits
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
-                <!-- <a class="dropdown-item" href="/admin">Dashboard</a> -->
-                <a
-                  class="dropdown-item"
-                  [routerLink]="userRole === 'admin' ? '/admin' : '/dashboard'"
+                <a class="dropdown-item" routerLink="/categories"
+                  >Tous les catégories</a
                 >
-                  Dashboard
-                </a>
               </li>
-              <!-- <li><a class="dropdown-item" href="/">Profile</a></li>
-              <li><a class="dropdown-item" href="/">Catégories</a></li>
-              <li><a class="dropdown-item" href="/">Produits</a></li> -->
-              <li></li>
-              <div class="dropdown-divider"></div>
               <li>
-                <a
-                  class="dropdown-item"
-                  style="cursor: pointer"
-                  (click)="logout()"
-                  [ngClass]="{ active: router.url === '/logout' }"
-                  routerLink="/logout"
+                <a class="dropdown-item" routerLink="/products"
+                  >Tous les produits</a
                 >
-                  se deconnecter
-                </a>
               </li>
-            </div>
+            </ul>
           </li>
-          <!-- <li>
-            <a class="cart-icon" routerLink="/cart">
-              <i class="fa fa-shopping-cart"></i>
-              <span class="badge badge-pill badge-danger">1</span>
+
+          <li class="nav-item mb-2 mb-md-0">
+            <a routerLink="/about" routerLinkActive="active">À propos</a>
+          </li>
+          <li class="nav-item mb-2 mb-md-0">
+            <a routerLink="/contact" routerLinkActive="active">Contact</a>
+          </li>
+
+          <!-- Liens si pas connecté -->
+          <ng-container *ngIf="!isloggedIn">
+            <li class="nav-item mb-2 mb-md-0">
+              <a routerLink="/login" routerLinkActive="active">Login</a>
+            </li>
+            <li class="nav-item mb-2 mb-md-0">
+              <a routerLink="/register" routerLinkActive="active">Register</a>
+            </li>
+          </ng-container>
+
+          <!-- Menu si connecté -->
+          <ng-container *ngIf="isloggedIn">
+            <li
+              class="nav-item dropdown item-products mb-2 mb-md-0"
+              routerLinkActive="active"
+            >
+              <a
+                class="nav-link dropdown-toggle pt-0"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {{ lastName }}
+              </a>
+              <div
+                *ngIf="userRole === 'user'"
+                class="dropdown-menu"
+                aria-labelledby="navbarDropdown"
+              >
+                <li>
+                  <a class="dropdown-item" routerLink="/user"> Dashboard </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" routerLink="/user/profil">
+                    Profil
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" routerLink="/user/order">
+                    Mes commandes
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" routerLink="/user/settings">
+                    Paramètres
+                  </a>
+                </li>
+                <div class="dropdown-divider"></div>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    style="cursor: pointer"
+                    (click)="logout()"
+                  >
+                    Se déconnecter
+                  </a>
+                </li>
+              </div>
+              <div
+                *ngIf="userRole === 'admin'"
+                class="dropdown-menu"
+                aria-labelledby="navbarDropdown"
+              >
+                <li>
+                  <a class="dropdown-item" routerLink="/admin"> Dashboard </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" routerLink="/admin/categories">
+                    Categories
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" routerLink="/admin/products">
+                    Produits
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" routerLink="/admin/users">
+                    Utilisateurs
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" routerLink="/admin/orders">
+                    Commandes
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" routerLink="/admin/settings">
+                    Parametres
+                  </a>
+                </li>
+                <div class="dropdown-divider"></div>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    style="cursor: pointer"
+                    (click)="logout()"
+                  >
+                    Se déconnecter
+                  </a>
+                </li>
+              </div>
+            </li>
+          </ng-container>
+
+          <!-- Cart -->
+          <li class="nav-item mb-2 mb-md-0">
+            <a href="#" (click)="toggleCartSlide($event)">
+              <span class="position-relative d-inline-block">
+                <i class="fas fa-shopping-cart fa-lg fs-4"></i>
+                <span
+                  *ngIf="cartCount > 0"
+                  class="position-absolute start-100 translate-middle badge bbadge rounded-pill bg-danger"
+                >
+                  {{ cartCount }}
+                  <span class="visually-hidden">articles dans le panier</span>
+                </span>
+              </span>
             </a>
           </li>
-          <li></li> -->
         </ul>
       </div>
     </div>
+  </nav>
+
+  <!-- Slide panier -->
+  <nav class="slider-cart">
+    <div class="cart-slide" [class.open]="isCartOpen">
+      <div class="cart-header">
+        <h5>Mon Panier <i class="fas fa-shopping-cart fa-lg fs-4"></i></h5>
+        <button class="btn-close" (click)="toggleCartSlide($event)">×</button>
+      </div>
+      <div class="cart-body">
+        <!-- Le (click) déclenche la méthode onCloseClick du composant CartSlideComponent -->
+        <app-carts
+          *ngIf="isCartOpen"
+          (closeSlide)="isCartOpen = false"
+        ></app-carts>
+      </div>
+
+      <div class="cart-footer" *ngIf="cartTotal > 0">
+        <div class="total">
+          <span>Total :</span>
+          <span>{{ cartTotal.toFixed(2) }} €</span>
+        </div>
+        <button (click)="openOrderSlide()" class="btn-checkout">
+          Commander
+        </button>
+      </div>
+    </div>
+
+    <!-- Fond noir -->
+    <div
+      class="cart-overlay"
+      *ngIf="isCartOpen"
+      (click)="toggleCartSlide($event)"
+    ></div>
+  </nav>
+
+  <!-- Slide order -->
+  <nav>
+    <div class="cart-slide" [class.open]="isOrderOpen">
+      <div class="cart-header">
+        <h5>Résumé de la commande</h5>
+        <button class="btn-close" (click)="toggleOrderSlide($event)">×</button>
+      </div>
+      <div class="cart-body p-0">
+        <app-orderslide></app-orderslide>
+      </div>
+    </div>
+
+    <!-- Fond noir -->
+    <div
+      class="cart-overlay"
+      *ngIf="isOrderOpen"
+      (click)="toggleCartSlide($event)"
+    ></div>
   </nav>
 </nav>

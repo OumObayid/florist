@@ -1,0 +1,32 @@
+
+<!-- Spinner pendant le chargement -->
+  <div *ngIf="loading" class="text-center my-5">
+      <img width="160" src="assets/images/spinner.gif" alt="chargement..."/>   
+  </div>
+<div *ngIf="!loading" class="product-carousel">
+  <div class="product-track">
+    <div class="product-item" *ngFor="let product of products">
+      <img [src]="product.image" [alt]="product.nom" class="img-fluid" />
+      <h5>{{ product.nom }}</h5>
+      <p>{{ product.prix | currency }}</p>
+     
+      <app-link-button
+      label="Voir le produit"
+      [routerLink]="['/product-details', product.id]"
+      role="button"
+      ></app-link-button>
+    </div>
+
+    <!-- duplication pour défilement infini -->
+    <div class="product-item" *ngFor="let product of products">
+      <img [src]="product.image" [alt]="product.nom" class="img-fluid" />
+      <h5>{{ product.nom }}</h5>
+      <p>{{ product.prix | currency }}</p>
+       <app-link-button
+      label="Voir le produit"
+      [routerLink]="['/product-details', product.id]"
+      role="button"
+      ></app-link-button>
+    </div>
+  </div>
+</div>

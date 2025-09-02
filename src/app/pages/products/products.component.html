@@ -1,0 +1,30 @@
+<app-banner-title
+  [title]="'Tous les produits de Flowers Oum'"
+  [underTitle]="
+    'Des produits pensés pour sublimer vos instants précieux.'
+  "
+>
+</app-banner-title>
+
+ <!-- Spinner pendant le chargement -->
+  <div *ngIf="loading" class="text-center my-5">
+      <img width="160" src="assets/images/spinner.gif" alt="chargement..."/>   
+  </div>
+<div *ngIf="!loading" class="container my-5">
+  <div class="row">
+    <div class="col-md-4 mt-2" *ngFor="let product of products">
+      <div class="card product-card">
+        <img [src]="product.image" class="card-img-top product-img" alt="{{ product.nom }}">
+        <div class="card-body ">
+          <h5 class="card-title">{{ product.nom }}</h5>
+          <p class="card-text price">{{ product.prix }} $</p>
+         
+          <app-link-button
+          [routerLink]="['/product-details', product.id]"
+          label="Voir Détails"
+          ></app-link-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,29 +1,103 @@
-<div class="container mt-5">
-    <h1 class="text-center title">Gestion des utilisateurs</h1>
-  
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">firstname</th>
-          <th scope="col">lastname</th>
-          <th scope="col">phone</th>
-          <th scope="col">address</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of users">
-          <td scope="row">{{ user.id }}</td>
-          <td>{{ user.firstname }}</td>
-          <td>{{ user.lastname }}</td>
-          <td>{{ user.phone }} </td>
-          <td>{{ user.address }} </td>
-          <td class="d-flex">
-            <a class="text-white btn btn-danger" (click)="deleteUser(user.id)">Supprimer</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<app-template-dashboard [title]="'Gestion des utilisateurs'">
+  <!-- affichage des users -->
+  <!-- Desktop -->
+  <div class="d-none d-md-block" *ngIf="!loading; else templateLoading">
+    <h4 class="text-center">Liste des utilisateurs ({{ users.length }})</h4>
+    <div class="table-responsive">
+      <table
+        class="table table-striped table-hover mt-4 w-100"
+        style="table-layout: fixed; width: 100%"
+      >
+        <thead class="thead">
+          <tr>
+            <th scope="col" width="5%">id</th>
+            <th scope="col" width="10%">firstname</th>
+            <th scope="col" width="10%">lastname</th>
+            <th scope="col" width="25%">role</th>
+            <th scope="col" width="15%">phone</th>
+            <th scope="col" width="20%">address</th>
+            <th scope="col" width="20%">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.id }}</td>
+            <td>{{ user.firstname }}</td>
+            <td>{{ user.lastname }}</td>
+            <td class="d-flex justify-content-between align-items-center">
+              {{ user.role }}
+              <app-button
+                label="Changer rôle"
+                [customStyle]="{ 'font-size': '14px' }"
+                [disabled]="loadingUsers[user.id]"
+                (clicked)="toggleRole(user.id, user.role)"
+              ></app-button>
+            </td>
+            <td>{{ user.phone }}</td>
+            <td>{{ user.address }}</td>
+            <td class="text-center">
+              <app-button
+                [label]="loadingUsers[user.id] ? 'En cours ...' : 'Supprimer'"
+                [customStyle]="{ 'font-size': '14px' }"
+                [disabled]="loadingUsers[user.id]"
+                (clicked)="deleteUser(user.id)"
+                customClass="btn-rouge-brique"
+              ></app-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  
+
+  <!-- Mobile -->
+  <div class="d-md-none" *ngIf="!loading; else templateLoading">
+    <h4 class="text-center">Liste des utilisateurs ({{ users.length }})</h4>
+    <div *ngFor="let user of users" class="card mb-3 p-2 shadow-sm">
+      <!-- Ligne 1 : id + firstname + lastname -->
+      <div class="d-flex justify-content-between mb-1">
+        <span>#{{ user.id }}</span>
+        <strong>{{ user.firstname }} {{ user.lastname }}</strong>
+      </div>
+
+      <!-- Ligne 2 : role + bouton changer rôle -->
+      <div class="d-flex justify-content-between align-items-center mb-1">
+        <div class="mb-1"><strong>Rôle: </strong>{{ user.role }}</div>
+        <app-button
+          label="Changer rôle"
+          [customStyle]="{ 'font-size': '14px', width: '120px' }"
+          [disabled]="loadingUsers[user.id]"
+          (clicked)="toggleRole(user.id, user.role)"
+        ></app-button>
+      </div>
+
+      <!-- Ligne 3 : phone -->
+      <div class="mb-1"><strong>Téléphone: </strong>{{ user.phone }}</div>
+
+      <!-- Ligne 4 : address -->
+      <div class="mb-2"><strong>Adresse: </strong>{{ user.address }}</div>
+
+      <!-- Ligne 5 : bouton supprimer centré -->
+      <div class="d-flex justify-content-center">
+        <app-button
+          [label]="loadingUsers[user.id] ? 'En cours ...' : 'Supprimer'"
+          [customStyle]="{ 'font-size': '14px', width: '120px' }"
+          [disabled]="loadingUsers[user.id]"
+          (clicked)="deleteUser(user.id)"
+          customClass="btn-rouge-brique"
+        ></app-button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading template -->
+  <ng-template #templateLoading>
+    <p class="text-muted text-center">Chargement des utilisateurs...</p>
+  </ng-template>
+
+  <ng-template #templateLoading>
+    <div class="text-center">
+      <img width="120" src="assets/images/spinner.gif" alt="" />
+    </div>
+  </ng-template>
+</app-template-dashboard>

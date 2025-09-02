@@ -1,30 +1,47 @@
-<div class="about-container">
-    <div class="about-banner">
-      <h1>À Propos de Nous</h1>
+<app-banner-title
+  [title]="'A propos de nous'"
+  [underTitle]="
+    'Découvrez Flowers Oum, l’art floral qui sublime chaque instant.'
+  "
+>
+</app-banner-title>
+
+<div class="container mt-5">
+  <div class="row align-items-center">
+    <!-- Image à gauche -->
+    <div class="col-lg-6 mb-4 mb-lg-0">
+      <img
+        src="assets/images/aboutt.jpg"
+        class="img-fluid rounded shadow about-img"
+        alt="Fleuriste"
+      />
     </div>
-  
-    <div class="container mt-5">
-      <div class="row align-items-center">
-        <!-- Image à gauche -->
-        <div class="col-lg-6">
-          <img src="assets/images/aboutt.jpg" class="img-fluid rounded shadow" alt="Fleuriste">
-        </div>
-  
-        <!-- Texte à droite -->
-        <div class="col-lg-6 about-text">
-          <h2>Flower's oum</h2>
-          <p>
-            Chez <strong>Flower's oum</strong>, nous croyons que chaque fleur raconte une histoire. 
-            Nos créations florales sont confectionnées avec passion et délicatesse, pour embellir tous vos moments précieux.
-          </p>
-          <p>
-            🌸 <em>Des bouquets uniques, adaptés à toutes les occasions.</em><br>
-            🌸 <em>Des fleurs fraîches sélectionnées avec soin.</em><br>
-            🌸 <em>Une expérience sur-mesure pour chaque client.</em>
-          </p>
-          <a href="/contact" class="btn btn-custom">Contactez-nous</a>
-        </div>
-      </div>
+
+    <!-- Texte à droite -->
+    <div class="col-lg-6 about-text">
+      <h2>Flower's Oum</h2>
+      <p>
+        Chez <strong>Flower's Oum</strong>, nous croyons que chaque fleur
+        raconte une histoire. Nos créations florales sont confectionnées avec
+        passion et délicatesse, pour embellir tous vos moments précieux.
+      </p>
+      <p>
+        🌸 <em>Des bouquets uniques, adaptés à toutes les occasions.</em><br />
+        🌸 <em>Des fleurs fraîches sélectionnées avec soin.</em><br />
+        🌸 <em>Une expérience sur-mesure pour chaque client.</em>
+      </p>
+      <p>
+        Que vous célébriez un anniversaire, un mariage, un événement spécial ou
+        simplement le quotidien, nous apportons la touche florale parfaite pour
+        exprimer vos émotions et émerveiller vos proches.
+      </p>
+    <div class="d-flex justify-content-center">
+      <app-link-button
+        label="Contactez-nous"
+        [routerLink]="['/product-details']"
+        role="button"
+        customClass="mt-3"
+      ></app-link-button></div>
     </div>
   </div>
-  
+</div>

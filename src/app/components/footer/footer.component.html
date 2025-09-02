@@ -1,4 +1,68 @@
-<footer className="footer mt-5">
-    <p>&copy; 2024 Mon Site Web. Tous droits réservés.</p>
-  </footer>
-  
+<footer class="footer bg-dark mt-2">
+  <div class="container py-3">
+    <div class="row align-items-start">
+      <!-- Médias sociaux -->
+      <div class="col-md-4 mb-3 mb-md-0">
+        <h6 class="text-uppercase">Suivez-nous</h6>
+        <ul class="list-inline mb-0 mt-2">
+          <li class="list-inline-item ms-2">
+            <a href="#" class=""><i class="fab fa-facebook"></i></a>
+          </li>
+          <li class="list-inline-item ms-2">
+            <a href="#" class=""><i class="fab fa-twitter"></i></a>
+          </li>
+          <li class="list-inline-item ms-2">
+            <a href="#" class=""><i class="fab fa-instagram"></i></a>
+          </li>
+          <li class="list-inline-item ms-2">
+            <a href="#" class=""><i class="fab fa-linkedin"></i></a>
+          </li>
+          <li class="list-inline-item ms-2">
+            <a href="#" class=""><i class="fab fa-youtube"></i></a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Liens utiles -->
+      <div class="col-md-4 mb-3 mb-md-0 text-center">
+        <h6 class="text-uppercase">Liens utiles</h6>
+        <ul class="list-unstyled mt-2 mb-0">
+          <li>
+            <a routerLink="/products" class="text-decoration-none">Produits</a>
+          </li>
+          <li>
+            <a routerLink="/categories" class="text-decoration-none"
+              >Catégories</a
+            >
+          </li>
+          <li>
+            <a routerLink="/about" class="text-decoration-none">À propos</a>
+          </li>
+          <li>
+            <a routerLink="/contact" class="text-decoration-none">Contact</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="col-md-4 text-md-end text-center">
+        <h6 class="text-uppercase">Contactez-nous</h6>
+        <ul class="list-unstyled mt-2 mb-0">
+          <li>Email : 
+           <a href="mailto:contact&#64;monsite.com">contact&#64;monsite.com</a>
+          </li>
+          <li>Téléphone : 
+            <a href="tel:+212600000000" class="text-decoration-none"
+              >+212600000000</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright en bas -->
+  <div class="bg-dark text-center py-2">
+    &copy; {{ currentYear }} Mon Site Web. Tous droits réservés.
+  </div>
+</footer>

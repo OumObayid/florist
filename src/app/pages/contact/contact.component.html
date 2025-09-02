@@ -1,15 +1,9 @@
-<div class="contact-header text-center py-5">
-  <div class="contact-content">
-    <h1 class="text-white">Nous Contacter</h1>
-    <p class="text-white">Chez Flower's Oum, nous sommes à votre écoute</p>
-  </div>
-</div>
+<app-banner-title [title]="'Nous Contacter'" [underTitle]="'Chez Flowers Oum, nous sommes à votre écoute'"></app-banner-title>
 
 <div class="container my-5">
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
       <div class="contact-form">
-        <h3 class="text-center mb-4">Formulaire de Contact</h3>
         <form (ngSubmit)="onSubmit()">
           <div class="mb-3">
             <label for="name" class="form-label">Votre Nom</label>
@@ -20,6 +14,7 @@
               [(ngModel)]="name"
               name="name"
               required
+              placeholder="Entrez votre nom complet"
             />
           </div>
           <div class="mb-3">
@@ -31,6 +26,7 @@
               [(ngModel)]="email"
               name="email"
               required
+              placeholder="Entrez votre Email"
             />
           </div>
           <div class="mb-3">
@@ -42,12 +38,16 @@
               name="message"
               rows="4"
               required
+              placeholder="Entrez votre message"
             ></textarea>
           </div>
           <div class="text-center">
-            <button type="submit" class="btn btn-custom">
-              Envoyer le Message
-            </button>
+           
+            <app-button
+              label="Envoyer le Message"
+              customClass="w-100"
+              type="submit"             
+            ></app-button>
           </div>
         </form>
       </div>

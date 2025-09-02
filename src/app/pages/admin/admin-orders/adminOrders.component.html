@@ -1,0 +1,112 @@
+<app-template-dashboard [title]="'Gestion des Commandes'">
+  <div class="px-0 border">
+    <ng-container *ngIf="orders$ | async as orders; else loading">
+      <div *ngIf="orders.length > 0; else noOrders" class="mb-4">
+        <div *ngFor="let order of orders" class="card mb-4 shadow-sm">
+          <div class="card-body d-flex flex-column">
+            <!-- ==================== Desktop ==================== -->
+            <div
+              class="d-none d-md-flex justify-content-between align-items-center mb-3 flex-wrap"
+            >
+              <h5 class="mb-0">
+                Commande {{ order.id }} - Client {{ order.user_id }}
+              </h5>
+              <select
+                class="form-select w-auto"
+                [(ngModel)]="selectedStatus[order.id]"
+                (ngModelChange)="updateStatus(order.id!, $event)"
+              >
+                <option *ngFor="let s of statusOptions" [value]="s">
+                  {{ s }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Produits Desktop : 2 colonnes -->
+            <div class="row g-3 d-none d-md-flex">
+              <div *ngFor="let item of order.items" class="col-6">
+                <div class="card h-100 p-2 d-flex flex-row align-items-center">
+                  <a [routerLink]="['/product-details', item.product_id]">
+                    <img
+                      [src]="item.product_image"
+                      alt="{{ item.product_nom }}"
+                      class="rounded me-3"
+                      style="width: 65px; height: 65px; object-fit: cover"
+                    />
+                  </a>
+                  <div class="flex-grow-1">
+                    <p class="mb-1 fw-semibold">{{ item.product_nom }}</p>
+                    <p class="mb-1 text-muted small">
+                      Quantité: {{ item.quantity }} | Prix: {{ item.price }} $
+                    </p>
+                    <p class="mb-0 fw-bold">
+                      Total: {{ item.price * item.quantity }} $
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ==================== Mobile ==================== -->
+            <div class="d-md-none mb-3">
+              <h5 class="mb-2">
+                Commande {{ order.id }} - Client {{ order.user_id }}
+              </h5>
+              <select
+                class="form-select w-100 mb-3"
+                [(ngModel)]="selectedStatus[order.id]"
+                (ngModelChange)="updateStatus(order.id!, $event)"
+              >
+                <option *ngFor="let s of statusOptions" [value]="s">
+                  {{ s }}
+                </option>
+              </select>
+
+              <!-- Produits Mobile : 1 colonne -->
+              <div
+                *ngFor="let item of order.items"
+                class="card mb-2 p-2 d-flex flex-row align-items-center"
+              >
+                <a [routerLink]="['/product-details', item.product_id]">
+                  <img
+                    [src]="item.product_image"
+                    alt="{{ item.product_nom }}"
+                    class="rounded me-3"
+                    style="width: 65px; height: 65px; object-fit: cover"
+                  />
+                </a>
+                <div class="flex-grow-1">
+                  <p class="mb-1 fw-semibold">{{ item.product_nom }}</p>
+                  <p class="mb-1 text-muted small">
+                    Quantité: {{ item.quantity }} | Prix: {{ item.price }} $
+                  </p>
+                  <p class="mb-0 fw-bold">
+                    Total: {{ item.price * item.quantity }} $
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Total commande (desktop + mobile) -->
+            <div class="mt-3 text-end">
+              <p class="fw-bold fs-5 mb-2">
+                <span style="color: var(--vert-oliv-fonc)">Total payé : </span>
+                <span style="color: var(--vert-olive)"
+                  >{{ order.total }} $</span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #loading>
+      <p class="text-muted">Chargement des commandes...</p>
+    </ng-template>
+
+    <ng-template #noOrders>
+      <p class="text-muted">Aucune commande trouvée.</p>
+    </ng-template>
+  </div>
+</app-template-dashboard>

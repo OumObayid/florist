@@ -1,9 +1,8 @@
+/* ----- Topbar ----- */
 .topbar {
-  background-color: #212529;
+  background-color: #3d4247;
   padding: 5px 0;
-
 }
-
 
 .topbar .social-network {
   list-style: none;
@@ -17,21 +16,36 @@
   margin-left: 10px;
 }
 
+/* Liens des réseaux sociaux */
 .topbar .social-network li a {
-  color: #fff;
+  color: var(--gris);             /* gris foncé par défaut */
   font-size: 16px;
-  transition: color 0.3s;
-}
-
-a {
+  transition: color 0.3s ease;
   text-decoration: none;
-  color: grey;
-  font-weight: 500;
-  margin-left: 19px;
 }
 
+/* Survol = var(--orange) (comme les liens du navbar) */
 .topbar .social-network li a:hover {
-  color: #1bbde8;
+  color: var(--orange);
+}
+
+/* ----- Liens navbar généraux ----- */
+.navbar-nav a{
+  color: var(--gris);             /* gris foncé par défaut */
+  text-decoration: none;
+  padding: 8px 12px;
+  transition: color 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.navbar-nav a:hover,
+.logo:hover {
+  color: var(--orange);              /* au survol */
+}
+
+.navbar-nav a.active,
+.logo.active {
+  color: var(--gris-clair);             /* gris clair si actif */
 }
 
 /* Style pour le navbar */
@@ -55,6 +69,15 @@ a {
   font-size: 40px !important;
   text-decoration: none;
 }
+/* bouton mobile */
+/* Supprime outline et border au focus ou clic */
+.navbar-toggler:focus,
+.navbar-toggler:active {
+  outline: none;
+  border: none;
+  box-shadow: none; /* supprime l'ombre de focus */
+}
+
 
 /* Assurer que le dropdown s'adapte bien */
 .navbar .dropdown-menu {
@@ -82,7 +105,7 @@ a {
 /* Empêcher le survol de modifier la taille */
 .navbar .dropdown-menu .dropdown-item:hover {
   background: transparent;
-  color: #a44545;
+  color: var(--rouge-brique);
   width: 100%;
   /* Assure que le hover ne change pas la taille */
 }
@@ -104,4 +127,128 @@ a {
   background: white;
   transform: rotate(45deg);
   box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* badge */
+.bbadge{
+  font-size: 10px;
+}
+
+/* ---------- Slide cart amélioré ---------- */
+nav .slider-cart{
+  z-index: 500 !important;
+}
+.cart-slide {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 650px;
+  max-width: 100%;
+  height: 100vh;
+  background: #ffffff;
+  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.25);
+  transition: right 0.4s ease;
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px 0 0 8px;
+  overflow: hidden;
+}
+
+.cart-slide.open {
+  right: 0;
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #f8f9fa;
+}
+
+.cart-header h5 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+  color: #888;
+  transition: color 0.2s ease;
+}
+.btn-close:hover {
+  color: #ff4d4f;
+}
+
+.cart-body {
+  flex-grow: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1040;
+}
+
+.cart-footer {
+  padding: 1rem 1.2rem;
+  border-top: 1px solid #e0e0e0;
+  background: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cart-footer .total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.btn-checkout {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--vert-olive);
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.btn-checkout:hover {
+  background-color: var(--vert-olive-clair);
+}
+
+/* Scrollbar personnalisée pour le corps du panier */
+.cart-body::-webkit-scrollbar {
+  width: 6px;
+}
+.cart-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+.cart-body::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+.cart-body::-webkit-scrollbar-thumb:hover {
+  background: #999;
 }

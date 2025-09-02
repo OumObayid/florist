@@ -39,23 +39,22 @@
 
 import { CanActivateFn } from '@angular/router';
 import { inject } from '@angular/core';
-import { Router } from '@angular/router';  // Ajout du router
+import { Router } from '@angular/router'; // Ajout du router
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { selectUserRole } from '../ngrx/auth.slice';
+import { DataState } from '../ngrx/data.slice';
 
-import { DataState, selectUserRole } from '../ngrx/data.slice';
 export const adminGuard: CanActivateFn = (route, state) => {
   const store = inject(Store<DataState>);
-  const router = inject(Router);  // Injection du router
+  const router = inject(Router); // Injection du router
 
   return store.select(selectUserRole).pipe(
-    map(role => {    console.log('role :', role);
-
+    map((role) => {
       if (role === 'admin') {
-        return true;  // Admin autorisé
+        return true; // Admin autorisé
       } else {
-        router.navigate(['/dashboard']);  // Redirection vers le dashboard user
+        router.navigate(['/dashboard']); // Redirection vers le dashboard user
         return false;
       }
     })

@@ -1,15 +1,15 @@
-import { GetCategoriesService } from './services/categories/getCategories.service';
-import { ProductsService } from './services/product/products.service';
 import { Component } from '@angular/core';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import {  NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { CommonModule } from '@angular/common';
 import { Product } from './interfaces/product';
 import { Store } from '@ngrx/store';
-import { getCategories, setProducts, setUsers } from './ngrx/data.slice';
 import { UsersService } from './services/users/users.service';
-
+import { CategoriesService } from './services/categories/categories.service';
+import { ProductService } from './services/products/product.service';
+import { getCategories, setAllOrders, setProducts, setUsers } from './ngrx/data.slice';
+import { filter } from 'rxjs';
+import { OrdersService } from './services/orders/orders.service';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, HeaderComponent, FooterComponent],
@@ -23,40 +23,49 @@ export class AppComponent {
   constructor(
     private store: Store,
     private usersService: UsersService,
-    private productsService: ProductsService,
-    private getCategoriesService: GetCategoriesService
-  ) {}
+    private productService: ProductService,
+    private categoriesService: CategoriesService,
+    private ordersService: OrdersService,
+    private router: Router
+    
+  ) { this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => window.scrollTo({ top: 0, behavior: 'smooth' }));}
 
   ngOnInit(): void {
     //Product
-    this.productsService.getProducts().subscribe((response: any) => {
-      // console.log("Produits récupérés depuis l'API dans app:", response);
-      if (response.success && Array.isArray(response.products)) {
-        this.store.dispatch(setProducts(response.products));
+    this.productService.getProducts().subscribe((response: any) => {
+      if (response.success) {
+        this.store.dispatch(setProducts(response.dataProd));
       } else {
-        console.error('Erreur: Format de données invalide!', response);
+        console.log('response.message :', response.message);
       }
     });
     //user
     this.usersService.getUsers().subscribe((response: any) => {
-      // console.log("users récupérés depuis l'API dans app:", response);
-
-      if (response.success && Array.isArray(response.dataUsers)) {
-        this.store.dispatch(setUsers(response.dataUsers));
+      if (response.success && Array.isArray(response.users)) {
+        this.store.dispatch(setUsers(response.users));
       } else {
-        console.error('Erreur: Format de données invalide!', response);
+        console.log('Erreur: Format de données invalide!', response);
       }
     });
     //categories
-
-    this.getCategoriesService.getCategories().subscribe((response: any) => {
-      // console.log('response from App :', response);
-
+    this.categoriesService.getCategories().subscribe((response: any) => {
       if (response.success && Array.isArray(response.categories)) {
         this.store.dispatch(getCategories(response.categories));
       } else {
         console.error('Erreur: Format de données invalide!', response);
       }
     });
+    //All orders
+      this.ordersService.getAllOrders().subscribe((response: any) => {
+      if (response.success && Array.isArray(response.orders)) {
+        this.store.dispatch(setAllOrders(response.orders));
+      } else {
+        console.error('Erreur: Format de données invalide!', response);
+      }
+    });
+
+
   }
 }

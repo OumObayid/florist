@@ -1,0 +1,93 @@
+
+
+  .form-group label {
+  color: var( --vert-olive-fonc);
+  font-weight: bold;
+}
+
+.form-control {
+  border-radius: 10px;
+}
+
+form {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ////////////////// */
+/* Style général du dropdown */
+.dropdown {
+  border-radius: 8px; /* Coins arrondis */
+  font-size: 16px;
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+
+/* Style des options du dropdown */
+select.dropdown option {
+  background-color: rgb(246, 242, 216);
+  color: #333;
+}
+
+/* Style du dropdown lorsqu'on clique dessus */
+select.dropdown:hover {
+  cursor: pointer;
+}
+
+/* Style spécifique pour les appareils mobiles */
+@media (max-width: 768px) {
+  .dropdown {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+/* ///////////////// */
+
+.table {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+th {
+  background-color: var( --vert-olive);
+  color: white;
+  text-align: center;
+  padding: 12px;
+}
+
+td {
+  text-align: center;
+  padding: 10px;
+}
+
+.categorie-description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.categorie-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+
+.table-striped tbody tr:nth-child(odd) {
+  background-color: #f1e6f2;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f8f1fc;
+}
+
+
+  
+

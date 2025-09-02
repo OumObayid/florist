@@ -1,0 +1,103 @@
+<app-template-dashboard [title]="'Gestion des produits'">
+  <h4 class="text-center">Modification du Produit</h4>
+
+  <form (ngSubmit)="updateProduct()" class="px-2 px-md-4">
+    <!-- Nom -->
+    <div class="mb-3">
+      <label for="nom" class="form-label">Nom du Produit</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="nom"
+        name="nom"
+        required
+      />
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        class="form-control"
+        [(ngModel)]="description"
+        name="description"
+        rows="3"
+        required
+      ></textarea>
+    </div>
+
+    <!-- Prix -->
+    <div class="mb-3">
+      <label for="prix" class="form-label">Prix (€)</label>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="prix"
+        name="prix"
+        required
+      />
+    </div>
+
+    <!-- Dropdown pour sélectionner la catégorie -->
+    <div class="mb-3">
+      <label for="productCategory" class="form-label">Catégorie</label>
+      <select
+        class="form-select"
+        name="categorie_id"
+        [(ngModel)]="categorie_id"
+        required
+      >
+        <option value="" disabled>Sélectionner une catégorie</option>
+        <option
+          *ngFor="let category of categories"
+          [value]="category.id"
+          [selected]="category.id.toString() === categorie_id"
+        >
+          {{ category.nom }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Image -->
+    <div
+      class="mb-3 d-flex flex-column flex-md-row justify-content-between align-items-center"
+    >
+      <div>
+        <label for="image" class="form-label">Image du Produit</label>
+        <input
+          type="file"
+          id="image"
+          class="form-control form-control-sm"
+          (change)="onFileSelected($event)"
+        />
+      </div>
+
+      <img
+        [src]="imagePreview ? imagePreview : image"
+        alt="Aperçu de l'image"
+        class="preview-img mt-3"
+      />
+    </div>
+
+    <!-- Boutons -->
+    <div class="text-center d-flex justify-content-center gap-3 mt-4">
+      <app-button
+       [customStyle]="{ 'font-size': '14px' }"
+        [label]="loading ? 'envoie ...' : 'Enregistrer'"
+        type="submit"
+        (clicked)="updateProduct()"
+        [disabled]="loading"
+      >
+      </app-button>
+      <app-button
+       [customStyle]="{ 'font-size': '14px' }"
+        label="Annuler"
+        type="submit"
+        (clicked)="cancelEdit()"
+        customClass="btn-rouge-brique"
+      >
+      </app-button>
+      <p *ngIf="errorMessage">{{ errorMessage }}</p>
+    </div>
+  </form>
+</app-template-dashboard>

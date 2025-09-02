@@ -1,0 +1,80 @@
+<app-template-dashboard [title]="'Mes Commandes'">
+  <div class="mb-4 shadow-sm">
+    <!-- Liste des commandes -->
+    <ng-container *ngIf="orders$ | async as orders; else loading">
+      <div *ngIf="orders.length > 0; else noOrders" class="mb-4">
+        <div *ngFor="let order of orders" class="card mb-4 shadow-sm">
+          <div class="card-body d-flex flex-column">
+            <!-- Entête de la commande -->
+            <div
+              class="d-flex justify-content-between align-items-center mb-3 flex-wrap"
+            >
+              <h5 class="mb-0">Commande {{ order.id }}</h5>
+              <span
+                class="badge p-2"
+                [ngClass]="{
+                  'bg-warning text-dark': order.status === 'pending',
+                  'bg-primary': order.status === 'paid',
+                  'bg-secondary': order.status === 'shipped',
+                  'bg-success': order.status === 'delivered',
+                  'bg-danger': order.status === 'cancelled'
+                }"
+              >
+                {{ order.status }}
+              </span>
+            </div>
+
+            <!-- Produits -->
+            <div class="d-flex flex-column gap-3">
+              <div *ngFor="let item of order.items"
+     class="card p-2 d-flex flex-column flex-md-row align-items-start align-md-items-center w-100">
+
+  <!-- Bloc gauche : image + infos -->
+  <div class="d-flex flex-row align-items-center w-100 w-md-auto">
+    <img [src]="item.product_image"
+         alt="{{ item.product_nom }}"
+         class="rounded me-3"
+         style="width: 60px; height: 60px; object-fit: cover;" />
+    <div>
+      <p class="mb-1 fw-semibold">{{ item.product_nom }}</p>
+      <p class="mb-1 text-muted small">Quantité: {{ item.quantity }}</p>
+      <p class="mb-0 fw-bold">{{ item.price }} $</p>
+    </div>
+  </div>
+
+  <!-- Bloc bouton : voir détail -->
+  <div class="mt-2 mt-md-0 mx-auto mx-md-0" style="min-width: 150px;">
+    <app-link-button
+      [routerLink]="['/product-details', item.product_id]"
+      label="Voir en détail">
+    </app-link-button>
+  </div>
+</div>
+
+            </div>
+
+            <!-- Total commande -->
+            <div class="mt-3 text-end">
+              <p class="fw-bold fs-5 mb-2">
+                <span style="color: var(--vert-olive-fonc)">Total payé : </span
+                ><span style="color: var(--vert-olive)"
+                  >{{ order.total }} $</span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Loading -->
+    <ng-template #loading>
+      <p class="text-muted">Chargement des commandes...</p>
+    </ng-template>
+
+    <!-- Aucun résultat -->
+    <ng-template #noOrders>
+      <p class="text-muted">Aucune commande trouvée.</p>
+    </ng-template>
+  </div>
+</app-template-dashboard>

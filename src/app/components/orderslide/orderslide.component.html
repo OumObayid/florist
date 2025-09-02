@@ -1,0 +1,158 @@
+<div *ngIf="!endOrder" class="contain-slide">
+  <ng-container *ngIf="cartItems$ | async as cartItems">
+    <ng-container *ngIf="total$ | async as total">
+      <ng-container *ngIf="user$ | async as user">
+        <div class="mx-3">
+          <!-- Adresse de livraison -->
+          <div class="mt-2">
+            <label>Adresse de livraison :</label>
+            <input
+              type="text"
+              class="form-control bg-light"
+              [(ngModel)]="address"
+              [disabled]="!editAddressMode && user.address"
+              placeholder="Entrez votre adresse"
+            />
+
+            <button class="btn btn-link p-0 mt-1" (click)="toggleAddress(user)">
+              {{
+                editAddressMode
+                  ? "Enregistrer"
+                  : user.address
+                  ? "Modifier"
+                  : "Enregistrer"
+              }}
+            </button>
+
+            <small
+              *ngIf="!address || address.trim() === ''"
+              class="text-danger"
+            >
+              ⚠️ Veuillez remplir votre adresse pour confirmer la commande
+            </small>
+          </div>
+        </div>
+
+        <!-- ====================== -->
+        <!-- FORMULAIRE DE PAIEMENT -->
+        <!-- ====================== -->
+        <div class="mx-3 mt-4">
+          <div class="mb-3">
+            <div class="d-flex justify-content-between align-items-start">
+              <label for="card_number" class="form-label"
+                >Numéro de carte
+              </label>
+              <div class="d-flex gap-2 align-items-start">
+                <span class="d-none d-md-flex">Cartes acceptées :</span>
+                <img src="assets/images/Visa.svg" alt="Visa" height="30" />
+                <img
+                  src="assets/images/Mastercard-logo.svg"
+                  alt="Mastercard"
+                  height="30"
+                />
+                <img
+                  src="assets/images/American_Express_logo.svg"
+                  alt="Amex"
+                  height="30"
+                />
+              </div>
+            </div>
+            <input
+              type="text"
+              id="card_number"
+              class="form-control"
+              maxlength="19"
+              placeholder="1234 5678 9012 3456"
+              [(ngModel)]="card_number"
+              name="card_number"
+              pattern="[^0-9]*"
+              title="Les chiffres ne sont pas autorisés"
+              (keypress)="allowOnlyNumbers($event)"
+              (input)="formatCardNumber($event)"
+            />
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="card_expiry_date" class="form-label"
+                >Date d’expiration</label
+              >
+              <input
+                type="text"
+                id="card_expiry_date"
+                class="form-control"
+                placeholder="MM/AA"
+                maxlength="5"
+                [(ngModel)]="card_expiry_date"
+                name="card_expiry_date"
+                (input)="formatExpiry($event)"
+                maxlength="5"
+              />
+              <small *ngIf="expiryError" class="text-danger">{{
+                expiryError
+              }}</small>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="card_cvv" class="form-label">CVC</label>
+              <input
+                type="text"
+                id="card_cvv"
+                class="form-control"
+                maxlength="4"
+                placeholder="123"
+                [(ngModel)]="card_cvv"
+                name="card_cvv"
+                (keypress)="allowOnlyNumbers($event)"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="card_holder_name" class="form-label"
+              >Nom sur la carte</label
+            >
+            <input
+              type="text"
+              id="card_holder_name"
+              class="form-control"
+              placeholder="John Doe"
+              [(ngModel)]="card_holder_name"
+              name="card_holder_name"
+              (ngModelChange)="filterCardName($event)"
+            />
+          </div>
+        </div>
+
+        <!-- ====================== -->
+        <!-- RECAP + CONFIRMATION   -->
+        <!-- ====================== -->
+        <div class="container-btncheckout px-3">
+          <div class="d-flex justify-content-between fw-bold py-3">
+            <div><strong>Total à payer :</strong></div>
+            <div>{{ total | number : "1.2-2" }} $</div>
+          </div>
+
+          <button
+            class="btn-checkout mb-2"
+            [disabled]="!(address && address.trim() !== '')"
+            (click)="confirmOrder(cartItems, total, user.id)"
+          >
+            {{ isloading ? "En cours ..." : "Confirmer la commande" }}
+          </button>
+        </div>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</div>
+
+<!-- Message de confirmation -->
+<div *ngIf="endOrder" class="d-flex justify-content-center mt-5">
+  <div class="confirmation-message text-center mt-5">
+    <h3>Commande confirmée !</h3>
+    <p>Merci pour votre achat. Votre paiement a été reçu avec succès.</p>
+    <p>
+      Nous commençons maintenant à traiter vos produits. Vous recevrez un email
+      de suivi dès que votre commande sera expédiée.
+    </p>
+  </div>
+</div>

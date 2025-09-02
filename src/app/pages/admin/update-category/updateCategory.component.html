@@ -1,0 +1,74 @@
+<app-template-dashboard
+  [title]="'Gestion des catégories'"
+>
+  <h4 class="text-center">Modification de la categorie</h4>
+
+  <form (ngSubmit)="updateCategory()" class="px-2 px-md-4">
+    <!-- Nom -->
+    <div class="mb-3 ">
+      <label for="nom" class="form-label">Nom de la categorie</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="nom"
+        name="nom"
+        required
+      />
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        class="form-control"
+        [(ngModel)]="description"
+        name="description"
+        rows="6"
+        required
+      ></textarea>
+    </div>
+
+    <!-- Image -->
+    <div
+      class="mb-3 d-flex flex-column flex-md-row justify-content-between align-items-center"
+    >
+      <div>
+        <label for="image" class="form-label">Image de la categorie</label>
+        <input
+          type="file"
+          id="image"
+          class="form-control form-control-sm"
+          (change)="onFileSelected($event)"
+        />
+      </div>
+
+      <img
+        [src]="imagePreview ? imagePreview : image"
+        alt="Aperçu de l'image"
+        class="preview-img mt-3"
+      />
+    </div>
+
+    <!-- Boutons -->
+    <div class="text-center mt-4 d-flex gap-3 justify-content-center">
+      <app-button
+       [customStyle]="{ 'font-size': '14px' }"
+        [label]="loading ? 'envoie ...' : 'Enregistrer'"
+        type="submit"
+        (clicked)="updateCategory()"
+        [disabled]="loading"
+
+      >
+      </app-button>
+      <app-button
+       [customStyle]="{ 'font-size': '14px' }"
+        label="Annuler"
+        type="submit"
+        (clicked)="cancelEdit()"
+        customClass="btn-rouge-brique"
+      >
+      </app-button>
+      <p *ngIf="errorMessage">{{ errorMessage }}</p>
+    </div>
+  </form>
+</app-template-dashboard>

@@ -19,7 +19,7 @@ require 'PHPMailer/src/SMTP.php';
 require 'PHPMailer/src/Exception.php';
 
 // Charger la configuration
-$config = require '../config.php';
+$config = include __DIR__ . '/../../../includes/config.php';
 
 // Récupération des données envoyées en JSON
 header('Content-Type: application/json');

@@ -1,0 +1,52 @@
+/* yyyyyyyyyyyyyyy */
+.contain-slide {
+  position: relative; /* fixé par rapport au parent */
+  height: 78vh;
+ 
+}
+.container-btncheckout {
+  width: 100%;
+  
+  background-color: #f8f9fa;
+  color: #333;
+
+
+  
+}
+.btn-checkout {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--vert-olive);
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+   border-radius: 6px;
+  
+}
+/* yyyyyyyyyyyyyyy */
+.btn-checkout:hover {
+  background-color: var(--vert-olive-clair);
+}
+
+.confirmation-message {
+  background: #fff;
+  /* border: 2px solid #4CAF50; */
+  border-radius: 12px;
+  padding: 2rem;
+  width: 90%; 
+  text-align: center;
+  z-index: 1000; 
+}
+
+.confirmation-message h3 {
+  color: #4CAF50;
+  margin-bottom: 1rem;
+}
+
+.confirmation-message p {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+

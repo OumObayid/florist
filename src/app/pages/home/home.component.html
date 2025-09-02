@@ -1,9 +1,20 @@
 <!-- Section Bannière -->
 <div class="home-banner">
-  <div class="content-banner">
+  <div
+  class="content-banner d-flex flex-column justify-content-center align-items-center mx-auto text-center"
+  style="max-width: 90%;"
+>
     <h1 class="text-white">Découvrez l'élégance florale</h1>
-    <p class="text-white">Des créations uniques pour illuminer chaque instant</p>
-    <a href="/contact" class="btn btn-custom">Contactez-nous</a>
+    <p class="text-white fs-5 mb-5">
+      Des créations uniques pour illuminer chaque instant
+    </p>
+
+    <app-link-button
+      [routerLink]="['/contact']"
+      label="Contactez-nous"
+      customClass="px-5 py-3 fs-5  mt-3 btn-rouge-brique-plein"
+      cust
+    ></app-link-button>
   </div>
 </div>
 
@@ -12,29 +23,47 @@
   <h2 class="text-center mb-4">Nos Services Exclusifs</h2>
   <div class="row">
     <div class="col-md-4">
-      <div class="card">
-        <img src="assets/images/home-service.jpg" class="card-img-top" alt="Bouquet personnalisé">
+      <div class="card card1">
+        <img
+          src="assets/images/home-service.jpg"
+          class="card-img-top card-img-top1"
+          alt="Bouquet personnalisé"
+        />
         <div class="card-body">
           <h5 class="card-title">Création de Bouquets</h5>
-          <p class="card-text">Concevez un bouquet unique pour chaque occasion spéciale.</p>
+          <p class="card-text">
+            Concevez un bouquet unique pour chaque occasion spéciale.
+          </p>
         </div>
       </div>
     </div>
     <div class="col-md-4">
-      <div class="card">
-        <img src="assets/images/flowerbox_mixte.jpg" class="card-img-top" alt="Décoration florale">
+      <div class="card card2">
+        <img
+          src="assets/images/flowerbox_mixte.jpg"
+          class="card-img-top card-img-top2"
+          alt="Décoration florale"
+        />
         <div class="card-body">
           <h5 class="card-title">Décorations Événementielles</h5>
-          <p class="card-text">Des compositions florales inoubliables pour vos événements.</p>
+          <p class="card-text">
+            Des compositions florales inoubliables pour vos événements.
+          </p>
         </div>
       </div>
     </div>
     <div class="col-md-4">
-      <div class="card">
-        <img src="assets/images/bgflow4.jpg" class="card-img-top" alt="Abonnement fleurs">
+      <div class="card card3">
+        <img
+          src="assets/images/bgflow4.jpg"
+          class="card-img-top card-img-top3"
+          alt="Abonnement fleurs"
+        />
         <div class="card-body">
           <h5 class="card-title">Abonnement Floral</h5>
-          <p class="card-text">Recevez régulièrement des fleurs fraîches chez vous.</p>
+          <p class="card-text">
+            Recevez régulièrement des fleurs fraîches chez vous.
+          </p>
         </div>
       </div>
     </div>
@@ -42,14 +71,18 @@
 </div>
 
 <!-- Section Témoignages -->
-<section class="avis-clients py-5">
+<section class="container avis-clients py-5">
   <div class="container text-center">
     <h2 class="section-title">Nos Clients Témoignent</h2>
     <p class="section-subtitle">Découvrez leurs expériences florales 💐</p>
 
     <div id="carouselAvis" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
-        <div class="carousel-item active" *ngFor="let avis of avisClients; let i = index" [ngClass]="{'active': i === 0}">
+        <div
+          class="carousel-item active"
+          *ngFor="let avis of avisClients; let i = index"
+          [ngClass]="{ active: i === 0 }"
+        >
           <div class="testimonial">
             <p class="avis-texte">"{{ avis.message }}"</p>
             <h5 class="avis-auteur">- {{ avis.nom }}</h5>
@@ -57,10 +90,20 @@
         </div>
       </div>
 
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselAvis" data-bs-slide="prev">
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselAvis"
+        data-bs-slide="prev"
+      >
         <span class="carousel-control-prev-icon"></span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselAvis" data-bs-slide="next">
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselAvis"
+        data-bs-slide="next"
+      >
         <span class="carousel-control-next-icon"></span>
       </button>
     </div>
@@ -69,17 +112,6 @@
 
 <!-- Section Produits -->
 <div class="container my-5">
-  <h1 class="text-center title-flower my-5"> Collection Exclusive de Flower's Oum </h1>
-  <div class="row">
-    <div class="col-md-4 mt-5" *ngFor="let product of products">
-      <div class="card product-card">
-        <img [src]="product.image" class="card-img-top product-img" alt="{{ product.nom }}">
-        <div class="card-body ">
-          <h5 class="card-title">{{ product.nom }}</h5>
-          <p class="card-text price">{{ product.prix }} MAD</p>
-          <a [routerLink]="['/details', product.id]" class="btn btn-flower">Détails</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <h2 class="text-center mb-4">Nos Produits</h2>
+  <app-product-carousel></app-product-carousel>
 </div>

@@ -1,0 +1,59 @@
+.product-item {
+  flex: 0 0 calc(25% - 1rem); /* 4 éléments par ligne */
+  background: #fff;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* shadow léger par défaut */
+  min-width: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* animation fluide */
+}
+
+/* Hover : effet zoom et shadow */
+.product-item:hover {
+  transform: translateY(-5px); /* léger déplacement vers le haut */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25); /* shadow plus prononcé */
+}
+
+/* Limitation de la hauteur des images */
+.product-item img {
+  height: 200px;       /* hauteur constante */
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+/* Responsive : 1 élément par ligne sur mobile */
+@media (max-width: 768px) {
+  .product-item {
+    flex: 0 0 100%;
+  }
+}
+
+/* Animation du carousel */
+.product-carousel {
+  overflow: hidden;
+  width: 100%;
+  max-height: 400px;
+}
+
+.product-track {
+  display: flex;
+  gap: 1rem;
+  animation: scroll-left 20s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pause au survol du carousel */
+.product-carousel:hover .product-track {
+  animation-play-state: paused;
+}
+

@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // Charger la config depuis config.php
-$config = include __DIR__ . '/../config.php';
+$config = include __DIR__ . '/../../../includes/config.php';
 
 // Connexion DB avec mysqli
 $conn = new mysqli(
@@ -44,7 +44,7 @@ $email    = trim($data["email"]);
 $password = $data["password"];
 
 // Préparer la requête pour récupérer l’utilisateur
-$stmt = $conn->prepare("SELECT id, first_name, last_name, email, password FROM users WHERE email = ?");
+$stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
 if (!$stmt) {
     echo json_encode(['success' => false, 'message' => 'Erreur préparation requête: ' . $conn->error]);
     exit;
@@ -71,12 +71,7 @@ if (!password_verify($password, $user['password'])) {
 echo json_encode([
     'success' => true,
     'message' => 'Connexion réussie',
-    'user' => [
-        'id' => $user['id'],
-        'first_name' => $user['first_name'],
-        'last_name' => $user['last_name'],
-        'email' => $user['email']
-    ]
+    'user' => $user
 ]);
 
 $stmt->close();

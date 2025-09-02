@@ -1,0 +1,44 @@
+form {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-family: 'Dancing Script', cursive;
+    color: #352b2c;
+}
+
+label {
+    font-weight: bold;
+    color: #433f3e;
+}
+
+.form-control {
+    border-radius: 8px;
+}
+
+
+
+.preview-img {
+    width: 100%;
+    max-width: 150px;
+    border-radius: 10px;
+    border: 2px solid #73726b58;
+}
+
+.btn-success {
+    background: #76c893;
+    border: none;
+}
+
+.btn-danger {
+    background: #e76f51;
+    border: none;
+}
+
+.btn-success:hover,
+.btn-danger:hover {
+    opacity: 0.8;
+}

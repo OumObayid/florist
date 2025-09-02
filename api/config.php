@@ -36,6 +36,10 @@ $config = [
     'db_user' => getenv('DB_USER'),
     'db_pass' => getenv('DB_PASS'),
     'db_charset' => getenv('DB_CHARSET') ?: 'utf8mb4', // valeur par défaut
+
+    // Configuration de base Url api
+    'base_url_api' => rtrim(getenv('BASE_URL_API'), '/'),
+
 ];
 
 return $config;

@@ -4,12 +4,15 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 // Répondre directement aux requêtes OPTIONS (préflight)
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 // Charger la config depuis config.php
-$config = include __DIR__ . '/../config.php';
+$config = include __DIR__ . '/../../../includes/config.php';
 
 // Connexion DB avec mysqli
 $conn = new mysqli(
@@ -30,8 +33,8 @@ if ($conn->connect_error) {
 $data = json_decode(file_get_contents("php://input"), true);
 
 if (
-    empty($data["last_name"]) ||
-    empty($data["first_name"]) ||
+    empty($data["lastname"]) ||
+    empty($data["firstname"]) ||
     empty($data["phone"]) ||
     empty($data["email"]) ||
     empty($data["password"])
@@ -42,8 +45,8 @@ if (
 }
 
 // Nettoyage / préparation
-$last_name  = trim($data["last_name"]);
-$first_name = trim($data["first_name"]);
+$lastname  = trim($data["lastname"]);
+$firstname = trim($data["firstname"]);
 $phone      = trim($data["phone"]);
 $email      = trim($data["email"]);
 $password   = password_hash($data["password"], PASSWORD_BCRYPT);
@@ -63,10 +66,11 @@ if ($stmt_check->num_rows > 0) {
 }
 $stmt_check->close();
 
+$default_role = "user"; 
 // Insertion utilisateur
-$sql = "INSERT INTO users (last_name, first_name, phone, email, password_hash) VALUES (?, ?, ?, ?, ?)";
+$sql = "INSERT INTO users (lastname, firstname, phone, email, password, role) VALUES (?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("sssss", $last_name, $first_name, $phone, $email, $password);
+$stmt->bind_param("ssssss", $lastname, $firstname, $phone, $email, $password, $default_role);
 
 if ($stmt->execute()) {
     echo json_encode(["success" => true, "message" => "Utilisateur enregistré avec succès"]);

@@ -1,0 +1,171 @@
+/* 🌸 Style floral pour la page des détails du produit 🌸 */
+.product-detail-container {
+    /* background: url('/assets/images/bgform.jpg') no-repeat center center; */
+    background-size: cover;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style du titre */
+  .title-flower {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: #d99eca;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* ///////////////// */
+  /* Bannière */
+  .detail-banner {
+    background: url('/assets/images/banner3.JPG') center/cover no-repeat;
+    text-align: center;
+    margin: 70px;
+    color: rgb(255, 255, 255);
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.542); 
+  }
+  .detail-banner::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 360px;
+    /* background: rgba(0, 0, 0, 0.459);  */
+    z-index: 0; /* L'ombre passe derrière le texte et le bouton */
+  
+  }
+  .detail-banner h1{
+    position: relative; /* Permet au contenu de se positionner au-dessus de l'image sombre */
+    z-index: 1; /* Le contenu est au-dessus de l'image et de la superposition sombre */
+  
+  }
+  /* //////////////// */
+
+  /* Image du produit */
+  .product-detail-img {
+    width: 80%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 5px solid #dec8d3;
+    padding: 5px;
+    background: white;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Informations du produit */
+  .product-detail-content {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #d99eca;
+    font-weight: bold;
+  }
+  
+  .product-description {
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 10px;
+  }
+  
+  .product-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #bc9f61;
+    margin-top: 10px;
+  }
+  
+
+
+/* ===================== */
+/* Section Produits Défilants avec défilement automatique */
+/* ===================== */
+
+/* Conteneur du carrousel horizontal */
+.product-carousel {
+  overflow: hidden; /* on cache le scroll manuel */
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+/* Ligne de produits */
+.product-track {
+  display: flex;
+  gap: 1rem; /* espace entre les cartes */
+  animation: scroll-left 20s linear infinite;
+}
+
+/* Animation défilement */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Carte produit */
+.product-item {
+  flex: 0 0 25%; /* 4 cartes sur desktop */
+  background: #fff;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Animation au survol */
+.product-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Image de la carte */
+.card-img-top {
+  height: 150px; /* hauteur fixe pour toutes les cartes */
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* Body de la carte */
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+/* Pause animation au survol */
+.product-carousel:hover .product-track {
+  animation-play-state: paused;
+}
+
+/* Responsive pour mobile */
+@media (max-width: 768px) {
+  .product-item {
+    flex: 0 0 100%; /* 1 produit par ligne */
+  }
+}
+
+/* Animation de zoom sur image catégorie */
+.categorie-detail-img {
+  max-height: 300px;
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.categorie-detail-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}

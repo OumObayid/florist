@@ -1,0 +1,44 @@
+<!-- Sidebar -->
+<div class="sidebar bg-light border-end px-3">
+  <ul class="nav flex-column">
+    <li class="nav-item mb-2">
+      <a routerLink="/admin" class="nav-link text-dark">
+        <i class="bi bi-speedometer2 me-2"></i> Tableau de bord
+      </a>
+    </li>
+    <li class="nav-item mb-2">
+      <a routerLink="/admin/categories" class="nav-link text-dark">
+        <i class="bi bi-person-circle me-2"></i> Categories
+      </a>
+    </li>
+    <li class="nav-item mb-2">
+      <a routerLink="/admin/products" class="nav-link text-dark">
+        <i class="bi bi-bag-check me-2"></i> Produits
+      </a>
+    </li>
+
+    <li class="nav-item mb-2">
+      <a routerLink="/admin/users" class="nav-link text-dark">
+        <i class="bi bi-gear me-2"></i> Utilisateurs
+      </a>
+    </li>
+    <li class="nav-item mb-2">
+      <a routerLink="/admin/orders" class="nav-link text-dark">
+        <i class="bi bi-gear me-2"></i> Commandes
+      </a>
+    </li>
+    <li class="nav-item mb-2">
+      <a routerLink="/admin/settings" class="nav-link text-dark">
+        <i class="bi bi-gear me-2"></i> Paramètres
+      </a>
+    </li>
+    <li class="nav-item mt-4">
+       <app-button
+      label="Déconnexion"
+      (clicked)="logout()"
+      customClass="w-100"
+      >
+      </app-button>
+    </li>
+  </ul>
+</div>

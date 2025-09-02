@@ -1,0 +1,201 @@
+<app-template-dashboard [title]="'Gestion des produits'">
+  <h4 class="text-center">Ajout du Produit</h4>
+
+  <!-- Formulaire d'ajout de produit -->
+  <form class="mb-5 border px-2 px-md-4" (submit)="addProduct()">
+    <div class="mb-3">
+      <label class="form-label"  for="productName">Nom du produit</label>
+      <input
+        type="text"
+        class="form-control"
+        name="nom"
+        [(ngModel)]="nom"
+        placeholder="Nom du produit"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="productDescription">Description</label>
+      <textarea
+        class="form-control"
+        name="description"
+        [(ngModel)]="description"
+        rows="3"
+        placeholder="Description du produit"
+        required
+      ></textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="productPrice">Prix (€)</label>
+      <input
+        type="number"
+        class="form-control"
+        name="prix"
+        [(ngModel)]="prix"
+        placeholder="Prix en €"
+        required
+      />
+    </div>
+    <!-- Dropdown pour sélectionner la catégorie -->
+    <div class="mb-3 dropdown">
+      <label class="form-label" for="productCategory">Catégorie</label>
+      <select
+        class="form-control dropdown"
+        name="categorie_id"
+        [(ngModel)]="categorie_id"
+        required
+      >
+        <option value="" disabled selected>Sélectionner une catégorie</option>
+        <option *ngFor="let category of categories" [value]="category.id">
+          {{ category.nom }}
+        </option>
+      </select>
+    </div>
+    <!-- Image -->
+    <div
+      class="mb-3 d-flex flex-column flex-md-row justify-content-between align-items-center"
+    >
+      <div>
+        <label class="form-label" for="image">Image du Produit</label>
+        <input
+          type="file"
+          id="image"
+          class="form-control form-control-sm"
+          (change)="onFileSelected($event)"
+        />
+      </div>
+
+      <img
+        *ngIf="imagePreview"
+        [src]="imagePreview"
+        width="80" 
+        height="80"
+        alt="Aperçu de l'image"
+        class="preview-img mt-3"
+      />
+    </div>
+    <ng-template [ngIf]="!isLoadingButtonAdd">
+      <div class="d-flex justify-content-center">
+        <p class="text-center alert-success mt-4 rounded w-75 p-2" *ngIf="successMessage">
+          {{ successMessage }}
+        </p>
+        <p class="text-center alert-danger mt-4 rounded w-75 p-2" *ngIf="errorMessage">{{ errorMessage }}</p>
+      </div>
+    </ng-template>
+    <div class="text-center">
+      <app-button
+       [customStyle]="{ 'font-size': '14px' }"
+        [label]="isLoadingButtonAdd ? 'envoie...' : 'Ajouter le produit'"
+        type="submit"
+        [disabled]="isLoadingButtonAdd"
+      
+      >
+      </app-button>
+    </div>
+  </form>
+
+<!-- Desktop -->
+<div class="d-none d-md-block">
+  <div class="table-responsive">
+    <table
+      class="table table-striped table-hover mt-4 w-100"
+      style="table-layout: fixed; width: 100%"
+    >
+      <thead class="thead">
+        <tr>
+          <th style="width: 5%">#</th>
+          <th style="width: 15%">Nom</th>
+          <th style="width: 8%">Prix</th>
+          <th style="width: 15%">Image</th>
+          <th style="width: 8%">Catégorie</th>
+          <th style="width: 25%">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of paginatedProducts">
+          <td>{{ product.id }}</td>
+          <td style="word-break: break-word">{{ product.nom }}</td>
+          <td>{{ product.prix }} €</td>
+          <td>
+            <img
+              [src]="product.image"
+              height="80"
+              width="80"
+              class="card-img-top product-img"
+              alt="{{ product.nom }}"
+            />
+          </td>
+          <td style="word-break: break-word">{{ product.categorie_nom }}</td>
+          <td>
+            <div class="d-flex justify-content-between">
+              <app-link-button
+                [customStyle]="{ 'font-size': '14px' }"
+                label="Modifier"
+                [routerLink]="['/admin/update-product', product.id]"
+              ></app-link-button>
+              <app-button
+                [customStyle]="{ 'font-size': '14px' }"
+                [label]="
+                  loadingButtonsList[product.id] ? 'en cours...' : 'Supprimer'
+                "
+                [disabled]="loadingButtonsList[product.id]"
+                (clicked)="deleteProduct(product.id)"
+                customClass="btn-rouge-brique"
+              ></app-button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Mobile -->
+<div class="d-md-none">
+  <div *ngFor="let product of paginatedProducts" class="card mb-3 p-2 shadow-sm">
+    <!-- Ligne 1 : id + nom -->
+    <div class="d-flex justify-content-between align-items-center mb-1">
+      <span>#{{ product.id }}</span>
+      <span class="fw-semibold">{{ product.nom }}</span>
+    </div>
+
+    <!-- Ligne 2 : prix + catégorie -->
+    <div class="d-flex justify-content-between align-items-center mb-1">
+      <span>{{ product.prix }} €</span>
+      <span>{{ product.categorie_nom }}</span>
+    </div>
+
+    <!-- Ligne 3 : image + boutons -->
+    <div class="d-flex justify-content-between align-items-center mt-2">
+      <img
+        [src]="product.image"
+        alt="{{ product.nom }}"
+        class="rounded"
+        style="width: 80px; height: 80px; object-fit: cover"
+      />
+      <div class="d-flex flex-column gap-2">
+        <app-link-button
+          [customStyle]="{ 'font-size': '14px', 'width': '120px' }"
+          label="Modifier"
+          [routerLink]="['/admin/update-product', product.id]"
+        ></app-link-button>
+        <app-button
+          [customStyle]="{ 'font-size': '14px', 'width': '120px' }"
+          [label]="
+            loadingButtonsList[product.id] ? 'en cours...' : 'Supprimer'
+          "
+          [disabled]="loadingButtonsList[product.id]"
+          (clicked)="deleteProduct(product.id)"
+          customClass="btn-rouge-brique"
+        ></app-button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <ng-template #templateLoading>
+    <div class="text-center">
+      <img width="120" src="assets/images/spinner.gif" alt="" />
+    </div>
+  </ng-template>
+</app-template-dashboard>

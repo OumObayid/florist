@@ -1,0 +1,17 @@
+/* sidebar-user.component.css */
+.sidebar {
+  width: 250px;
+  min-height: calc(100vh - 120px);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin: 24px auto auto 24px;
+  padding-top: 30px;
+}
+.sidebar .nav-link {
+  transition: background 0.2s ease;
+  border-radius: 8px;
+}
+.sidebar .nav-link:hover {
+  background: #f1f1f1;
+}
+
