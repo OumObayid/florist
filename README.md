@@ -74,3 +74,8 @@ npm install
 
 # Lancer le projet Angular
 ng serve
+
+---
+
+## Aperçu
+https://florist.oumportfolio.com
