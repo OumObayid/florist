@@ -43,200 +43,204 @@
   </header>
 
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
-    <div class="container">
-      <!-- Logo -->
-      <a
-        class="logo"
-        routerLink="/"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        Flower's Oum
-      </a>
+  <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
+  <div class="container">
+    <!-- Logo -->
+    <a
+      class="logo"
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Flower's Oum
+    </a>
 
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarResponsive"
-        aria-controls="navbarResponsive"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <!-- Toggler -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarResponsive"
+      aria-controls="navbarResponsive"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
+    <!-- Collapse -->
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+
+        <!-- Lien simple -->
+        <li class="nav-item">
+          <a
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="nav-link"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarResponsive"
+          >
+            Accueil
+          </a>
+        </li>
+
+        <!-- Dropdown Produits -->
+        <li class="nav-item mt-md-2  dropdown item-products" routerLinkActive="active">
+          <a
+            class="nav-link dropdown-toggle pt-md-0"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Produits
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="/categories"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarResponsive"
+              >
+                Toutes les catégories
+              </a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="/products"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarResponsive"
+              >
+                Tous les produits
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Lien simple -->
+        <li class="nav-item  mb-md-0">
+          <a
+            routerLink="/about"
+            routerLinkActive="active"
+            class="nav-link"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarResponsive"
+          >
+            À propos
+          </a>
+        </li>
+        <li class="nav-item mb-2 mb-md-0">
+          <a
+            routerLink="/contact"
+            routerLinkActive="active"
+            class="nav-link"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarResponsive"
+          >
+            Contact
+          </a>
+        </li>
+
+        <!-- Non connecté -->
+        <ng-container *ngIf="!isloggedIn">
+          <li class="nav-item mb-2 mb-md-0">
             <a
-              routerLink="/"
+              routerLink="/login"
               routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
+              class="nav-link"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarResponsive"
             >
-              Accueil <span class="visually-hidden">(current)</span>
+              Login
             </a>
           </li>
-
-          <li class="nav-item dropdown item-products" routerLinkActive="active">
+          <li class="nav-item mb-2 mb-md-0">
             <a
-              class="nav-link dropdown-toggle pt-md-0"
+              routerLink="/register"
+              routerLinkActive="active"
+              class="nav-link"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarResponsive"
+            >
+              Register
+            </a>
+          </li>
+        </ng-container>
+
+        <!-- Connecté -->
+        <ng-container *ngIf="isloggedIn">
+          <li class="nav-item mt-md-2 dropdown item-products mb-2 mb-md-0" routerLinkActive="active">
+            <a
+              class="nav-link dropdown-toggle pt-0"
               href="#"
-              id="navbarDropdown"
+              id="navbarDropdownUser"
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              Produits
+              {{ lastName }}
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+            <!-- Dropdown user normal -->
+            <div *ngIf="userRole === 'user'" class="dropdown-menu" aria-labelledby="navbarDropdownUser">
               <li>
-                <a class="dropdown-item" routerLink="/categories"
-                  >Tous les catégories</a
-                >
+                <a class="dropdown-item" routerLink="/user" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Dashboard</a>
               </li>
               <li>
-                <a class="dropdown-item" routerLink="/products"
-                  >Tous les produits</a
-                >
+                <a class="dropdown-item" routerLink="/user/profil" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Profil</a>
               </li>
-            </ul>
+              <li>
+                <a class="dropdown-item" routerLink="/user/order" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Mes commandes</a>
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/user/settings" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Paramètres</a>
+              </li>
+              <div class="dropdown-divider"></div>
+              <li>
+                <a class="dropdown-item" style="cursor: pointer" (click)="logout()">Se déconnecter</a>
+              </li>
+            </div>
+
+            <!-- Dropdown admin -->
+            <div *ngIf="userRole === 'admin'" class="dropdown-menu" aria-labelledby="navbarDropdownUser">
+              <li><a class="dropdown-item" routerLink="/admin" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Dashboard</a></li>
+              <li><a class="dropdown-item" routerLink="/admin/categories" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Categories</a></li>
+              <li><a class="dropdown-item" routerLink="/admin/products" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Produits</a></li>
+              <li><a class="dropdown-item" routerLink="/admin/users" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Utilisateurs</a></li>
+              <li><a class="dropdown-item" routerLink="/admin/orders" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Commandes</a></li>
+              <li><a class="dropdown-item" routerLink="/admin/settings" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Paramètres</a></li>
+              <div class="dropdown-divider"></div>
+              <li>
+                <a class="dropdown-item" style="cursor: pointer" (click)="logout()">Se déconnecter</a>
+              </li>
+            </div>
           </li>
+        </ng-container>
 
-          <li class="nav-item mb-2 mb-md-0">
-            <a routerLink="/about" routerLinkActive="active">À propos</a>
-          </li>
-          <li class="nav-item mb-2 mb-md-0">
-            <a routerLink="/contact" routerLinkActive="active">Contact</a>
-          </li>
-
-          <!-- Liens si pas connecté -->
-          <ng-container *ngIf="!isloggedIn">
-            <li class="nav-item mb-2 mb-md-0">
-              <a routerLink="/login" routerLinkActive="active">Login</a>
-            </li>
-            <li class="nav-item mb-2 mb-md-0">
-              <a routerLink="/register" routerLinkActive="active">Register</a>
-            </li>
-          </ng-container>
-
-          <!-- Menu si connecté -->
-          <ng-container *ngIf="isloggedIn">
-            <li
-              class="nav-item dropdown item-products mb-2 mb-md-0"
-              routerLinkActive="active"
-            >
-              <a
-                class="nav-link dropdown-toggle pt-0"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                {{ lastName }}
-              </a>
-              <div
-                *ngIf="userRole === 'user'"
-                class="dropdown-menu"
-                aria-labelledby="navbarDropdown"
-              >
-                <li>
-                  <a class="dropdown-item" routerLink="/user"> Dashboard </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" routerLink="/user/profil">
-                    Profil
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" routerLink="/user/order">
-                    Mes commandes
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" routerLink="/user/settings">
-                    Paramètres
-                  </a>
-                </li>
-                <div class="dropdown-divider"></div>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    style="cursor: pointer"
-                    (click)="logout()"
-                  >
-                    Se déconnecter
-                  </a>
-                </li>
-              </div>
-              <div
-                *ngIf="userRole === 'admin'"
-                class="dropdown-menu"
-                aria-labelledby="navbarDropdown"
-              >
-                <li>
-                  <a class="dropdown-item" routerLink="/admin"> Dashboard </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" routerLink="/admin/categories">
-                    Categories
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" routerLink="/admin/products">
-                    Produits
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" routerLink="/admin/users">
-                    Utilisateurs
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" routerLink="/admin/orders">
-                    Commandes
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" routerLink="/admin/settings">
-                    Parametres
-                  </a>
-                </li>
-                <div class="dropdown-divider"></div>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    style="cursor: pointer"
-                    (click)="logout()"
-                  >
-                    Se déconnecter
-                  </a>
-                </li>
-              </div>
-            </li>
-          </ng-container>
-
-          <!-- Cart -->
-          <li class="nav-item mb-2 mb-md-0">
-            <a href="#" (click)="toggleCartSlide($event)">
-              <span class="position-relative d-inline-block">
-                <i class="fas fa-shopping-cart fa-lg fs-4"></i>
-                <span
-                  *ngIf="cartCount > 0"
-                  class="position-absolute start-100 translate-middle badge bbadge rounded-pill bg-danger"
-                >
-                  {{ cartCount }}
-                  <span class="visually-hidden">articles dans le panier</span>
-                </span>
+        <!-- Cart -->
+        <li class="nav-item mt-md-2 mb-2 mb-md-0">
+          <a href="#" (click)="toggleCartSlide($event)">
+            <span class="position-relative d-inline-block">
+              <i class="fas fa-shopping-cart fa-lg fs-4"></i>
+              <span *ngIf="cartCount > 0" class="position-absolute start-100 translate-middle badge bbadge rounded-pill bg-danger">
+                {{ cartCount }}
+                <span class="visually-hidden">articles dans le panier</span>
               </span>
-            </a>
-          </li>
-        </ul>
-      </div>
+            </span>
+          </a>
+        </li>
+
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
+
 
   <!-- Slide panier -->
   <nav class="slider-cart">

@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
     </div>
 
     <!-- Layout Mobile -->
-<div class="side-mobile position-relative" *ngIf="isMobile">
+<div  class="side-mobile position-relative" *ngIf="isMobile">
   <!-- Icône hamburger -->
   <button
   class="btn d-md-none shadow-none border-0"
@@ -36,7 +36,7 @@ import { CommonModule } from '@angular/common';
 </button>
 
   <!-- Sidebar mobile -->
-  <div class="mobile-sidebar" [ngClass]="{ show: sidebarVisible }">
+  <div (click)="sidebarVisible = !sidebarVisible" class="mobile-sidebar" [ngClass]="{ show: sidebarVisible }">
     <app-sidebar-admin></app-sidebar-admin>
   </div>
 
