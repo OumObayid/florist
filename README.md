@@ -64,7 +64,7 @@ Elle inclut un **tableau de bord administrateur** pour g√©rer les produits, cat√
 
 ```bash
 # Cloner le projet
-git clone https://github.com/ton-username/flower-shop.git
+git clone https://github.com/oumobayid/flower-shop.git
 
 # Aller dans le dossier frontend
 cd flower-shop
