@@ -1,12 +1,4 @@
-/* 🌸 Style floral pour la page des détails du produit 🌸 */
-.product-detail-container {
-    /* background: url('/assets/images/bgform.jpg') no-repeat center center; */
-    background-size: cover;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  }
-  
+
   /* Style du titre */
   .title-flower {
     font-family: 'Dancing Script', cursive;

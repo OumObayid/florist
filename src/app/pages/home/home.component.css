@@ -1,7 +1,7 @@
 /* Bannière */
 .home-banner {
   position: relative;
-  background: url('/assets/images/header3.jpg') center/cover no-repeat;
+  background: url('/assets/images/header3.webp') center/cover no-repeat;
   height: calc(100vh - 100px);
   text-align: center;
   padding-top: 150px;
