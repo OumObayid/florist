@@ -1,59 +1,76 @@
-# FlowerShop
+# 🌸 Flower-Shop
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+[![Angular](https://img.shields.io/badge/Angular-13-red?style=for-the-badge&logo=angular&logoColor=white)](https://angular.io/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-5-purple?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/fr/docs/Web/CSS)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/fr/docs/Web/HTML)
+[![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Présentation du projet
+
+**Flower-Shop** est une application e-commerce complète dédiée à la vente de fleurs et produits associés.  
+Elle inclut un **tableau de bord administrateur** pour gérer les produits, catégories, utilisateurs et commandes.
+
+---
+
+## 🧩 Fonctionnalités principales
+
+### Côté Administrateur
+
+- Tableau de bord avec statistiques :
+  - Total produits
+  - Total utilisateurs
+  - Total catégories
+  - Total commandes et montant global
+- Gestion des produits :
+  - Ajouter, modifier et supprimer un produit
+  - Prévisualisation d'image avant ajout
+  - Pagination et filtrage
+- Gestion des commandes :
+  - Modifier le statut des commandes (pending, paid, shipped, delivered, cancelled)
+  - Affichage responsive (desktop et mobile)
+
+### Côté Client
+
+- Navigation fluide sur les catégories et produits
+- Détails de produit avec images et prix
+- Commande en ligne (intégration possible avec API backend)
+
+---
+
+## ⚙️ Technologies utilisées
+
+- **Frontend :**
+  - Angular 13 (Standalone Components)
+  - Bootstrap 5
+  - HTML5 & CSS3
+  - NgRx pour la gestion d'état
+  - RxJS pour la gestion des flux asynchrones
+  - ngx-toastr pour notifications
+
+- **Backend :**
+  - PHP pour l'API REST
+  - MySQL pour la base de données
+
+- **Outils supplémentaires :**
+  - Angular Material (dialog confirm)
+  - FormData pour la gestion des fichiers images
+
+---
+
+## 🛠️ Installation
 
 ```bash
+# Cloner le projet
+git clone https://github.com/ton-username/flower-shop.git
+
+# Aller dans le dossier frontend
+cd flower-shop
+
+# Installer les dépendances
+npm install
+
+# Lancer le projet Angular
 ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
