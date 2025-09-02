@@ -1,3 +1,22 @@
+/*
+ * Projet Flower-Shop
+ * Page : NgRx Store - Panier
+ *
+ * Description :
+ * Définit le store NgRx pour la gestion du panier.
+ * Contient l'état des articles du panier, le mode de paiement et l'adresse.
+ * Actions pour ajouter, mettre à jour, supprimer et vider le panier.
+ * Reducer pour appliquer les changements et sélecteurs pour accéder aux données.
+ *
+ * Développé par :
+ * OUMAIMA EL OBAYID
+ *
+ * Licence :
+ * Licence MIT
+ * https://opensource.org/licenses/MIT
+ */
+
+// -------------------- Imports -------------------------------
 import {
   createAction,
   props,
@@ -12,9 +31,9 @@ const isBrowser = typeof window !== 'undefined';
 
 // -------------------- Interface et État ----------------------
 export interface CartState {
-  items: CartItem[];
-  paymentMode: string;
-  address?: string;
+  items: CartItem[];      // Articles du panier
+  paymentMode: string;     // Mode de paiement sélectionné
+  address?: string;        // Adresse de livraison
 }
 
 export const initialCartState: CartState = {
@@ -31,6 +50,7 @@ export const initialCartState: CartState = {
       ? JSON.parse(localStorage.getItem('address')!)
       : null,
 };
+
 // -------------------- Actions -------------------------------
 export const setCartItems = createAction(
   '[Cart] Set Items',
@@ -48,9 +68,7 @@ export const removeCartItem = createAction(
   '[Cart] Remove Item',
   props<{ itemId: number }>()
 );
-
 export const clearCartItems = createAction('[Cart] Clear cart items');
-
 export const setAddress = createAction(
   '[Cart] Set Address',
   props<{ address: string }>()
@@ -63,13 +81,12 @@ export const setPaymentMode = createAction(
 // -------------------- Reducer -------------------------------
 export const cartReducer = createReducer(
   initialCartState,
- on(setCartItems, (state, { items }) => {
-  if (typeof window !== 'undefined') {
-    localStorage.setItem('items', JSON.stringify(items));
-  }
-  return { ...state, items }; // ← ici
-}),
-  // on(setCartItems, (state, { items }) => ({ ...state, items })),
+  on(setCartItems, (state, { items }) => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('items', JSON.stringify(items));
+    }
+    return { ...state, items };
+  }),
   on(addCartItem, (state, { item }) => ({
     ...state,
     items: [...state.items, item],
@@ -84,13 +101,12 @@ export const cartReducer = createReducer(
     ...state,
     items: state.items.filter((item) => item.id !== itemId),
   })),
-  // ✅ Vider le panier
   on(clearCartItems, (state) => {
     if (isBrowser) {
       localStorage.removeItem('items');
     }
     return { ...state, items: [] };
-  }), 
+  }),
   on(setAddress, (state, { address }) => ({ ...state, address })),
   on(setPaymentMode, (state, { paymentMode }) => ({ ...state, paymentMode }))
 );
@@ -110,11 +126,9 @@ export const selectAddress = createSelector(
   selectCartFeature,
   (state) => state.address
 );
-
 export const selectCartCount = createSelector(selectCartItems, (items) =>
   items.reduce((total, item) => total + item.quantity, 0)
 );
-
 export const selectCartTotal = createSelector(selectCartItems, (items) =>
   items.reduce((total, item) => total + item.prix * item.quantity, 0)
 );

@@ -1,3 +1,19 @@
+/*
+ * Projet Flower-Shop
+ * Page : Boîte de dialogue de confirmation (Confirm Dialog)
+ *
+ * Description :
+ * Composant affichant une boîte de dialogue modale pour confirmer ou annuler
+ * une action. Utilisé par exemple pour la suppression d'un article du panier.
+ *
+ * Développé par :
+ * OUMAIMA EL OBAYID
+ *
+ * Licence :
+ * Licence MIT
+ * https://opensource.org/licenses/MIT
+ */
+
 import { Component } from '@angular/core';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { ButtonComponent } from "../button/button.component";
@@ -12,11 +28,13 @@ import { ButtonComponent } from "../button/button.component";
 export class ConfirmDialogComponent {
   constructor(public dialogRef: MatDialogRef<ConfirmDialogComponent>) {}
 
+  // Ferme la boîte de dialogue et renvoie "false" au parent
   onCancel(): void {
-    this.dialogRef.close(false); // Renvoie "false" si l'utilisateur annule
+    this.dialogRef.close(false);
   }
 
+  // Ferme la boîte de dialogue et renvoie "true" au parent
   onConfirm(): void {
-    this.dialogRef.close(true); // Renvoie "true" si l'utilisateur confirme
+    this.dialogRef.close(true);
   }
 }

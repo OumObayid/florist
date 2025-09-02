@@ -1,5 +1,77 @@
-<app-template-dashboard
-[title]="'Tableau de bord'"
->
-contenu de dashboard
+<app-template-dashboard [title]="'Tableau de bord admin'">
+  <div class="mt-4">
+    <div class="my-4">
+      <div class="row g-3">
+        <!-- Carte Produits -->
+        <div class="col-md-3" *ngIf="products$ | async as products">
+          <div
+            class="card shadow-sm dashboard-card h-100 text-white p-2"
+            style="background: linear-gradient(to bottom right, #f5a623, #f4d6a9);"
+          >
+            <h5 style="color:#774a03;" class="card-title">Produits</h5>
+            <p><strong>Total produits:</strong> {{ products.length }}</p>
+          </div>
+        </div>
+
+        <!-- Carte Utilisateurs -->
+        <div class="col-md-3" *ngIf="users$ | async as users">
+          <div
+            class="card shadow-sm dashboard-card h-100 text-white p-2"
+            style="background: linear-gradient(to bottom right, #af6161, #facbcb);"
+          >
+            <h5 style="color:#6d1e1e;" class="card-title">Utilisateurs</h5>
+            <p><strong>Total utilisateurs:</strong> {{ users.length }}</p>
+          </div>
+        </div>
+
+        <!-- Carte Catégories -->
+        <div class="col-md-3" *ngIf="categories$ | async as categories">
+          <div
+            class="card shadow-sm dashboard-card h-100 text-white p-2"
+            style="background: linear-gradient(to bottom right, #8a9a5b, #eff5aa);"
+          >
+            <h5 style="color:#556624;" class="card-title">Catégories</h5>
+            <p><strong>Total catégories:</strong> {{ categories.length }}</p>
+          </div>
+        </div>
+
+        <!-- Carte Commandes -->
+        <div class="col-md-3" *ngIf="orders$ | async as orders">
+          <div
+            class="card shadow-sm dashboard-card h-100 text-white p-2"
+            style="background: linear-gradient(to bottom right, #07b7db, #a3e5f2);"
+          >
+            <h5 style="color:#05697d;" class="card-title">Commandes</h5>
+            <p><strong>Total commandes:</strong> {{ orders.length }}</p>
+            <p>
+              <strong>Montant total:</strong>
+              {{ getOrdersTotal(orders) | currency : "USD" }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section Top produits achetés -->
+      <ng-container *ngIf="products$ | async as products">
+        <div class="col-md-6 mt-3" *ngIf="orders$ | async as orders">
+          <div
+            class="card p-3 shadow-sm h-100"
+            style="background: linear-gradient(to bottom right, #958989, #dedbdb);"
+          >
+            <h5>Top produits achetés</h5>
+            <ul class="list-group list-group-flush">
+              <!-- Boucle sur les produits les plus achetés -->
+              <li
+                class="bg-body-secondary list-group-item d-flex justify-content-between align-items-center"
+                *ngFor="let product of getMostPurchasedProducts(orders)"
+              >
+                {{ product.nom }}
+                <span class="badge bg-primary rounded-pill">{{ product.quantity }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
 </app-template-dashboard>

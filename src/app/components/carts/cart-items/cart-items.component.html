@@ -1,5 +1,4 @@
-
-
+<!-- Version desktop du panier -->
 <div
   class="cart-item w-100 d-none d-md-flex "
   [ngStyle]="{
@@ -10,20 +9,25 @@
     borderBottom:'1px solid var(--vert-olive)'
   }"
 >
-  <!-- Section principale avec les détails de l'article -->
+  <!-- Section principale contenant les détails de l'article -->
   <div class="w-100">
+    <!-- Nom du produit -->
     <h5 class="mb-3">{{ cartItem.nom }}</h5>
+
     <div class="d-flex justify-content-between align-items-center gap-3">
-      <!-- Image de l'article -->
+      <!-- Image cliquable de l'article qui redirige vers les détails du produit -->
       <a
         [routerLink]="['/product-details', cartItem.productId]"
-        class="text-decoration-none text-reset"        
+        class="text-decoration-none text-reset"
       >
         <img
           [src]="cartItem.image"
           [alt]="cartItem.nom"
           [ngStyle]="{ width: '70px', height: '70px' }"
-      /></a>
+        />
+      </a>
+
+      <!-- Informations sur le prix et la quantité -->
       <div>
         <p [ngStyle]="{ margin: '5px 0' }">
           <strong>Prix unitaire:</strong>
@@ -33,7 +37,8 @@
           <strong>Quantité:</strong> {{ cartItem.quantity }}
         </p>
       </div>
-      <!-- Boutons incrément / décrément -->
+
+      <!-- Boutons pour incrémenter ou décrémenter la quantité -->
       <div class="d-flex align-items-center gap-2">
         <button
           (click)="incrementQuantity()"
@@ -52,7 +57,7 @@
         </button>
       </div>
 
-      <!-- Supprimer -->
+      <!-- Bouton supprimer l'article -->
       <div
         class="text-danger"
         style="cursor: pointer; font-weight: 500"
@@ -60,7 +65,8 @@
       >
         Supprimer
       </div>
-      <!-- Total -->
+
+      <!-- Affichage du total pour cet article -->
       <div class="d-flex flex-column text-end ms-3">
         <span class="fw-bold">Total</span>
         <span>{{ totalItemPrice.toFixed(2) }} €</span>
@@ -69,13 +75,13 @@
   </div>
 </div>
 
-<!-- Mobile -->
+<!-- Version mobile du panier -->
 <div class="cart-item-mobile d-flex d-md-none flex-column w-100 p-2 border-bottom" style="border-color: var(--vert-olive);">
   
-  <!-- Ligne 1 : Nom produit -->
+  <!-- Nom du produit -->
   <h5 class="mb-2">{{ cartItem.nom }}</h5>
 
-  <!-- Ligne 2 : Image à gauche, infos à droite -->
+  <!-- Image et informations principales du produit -->
   <div class="d-flex align-items-center justify-content-between mb-2">
     <a [routerLink]="['/product-details', cartItem.productId]" class="text-decoration-none text-reset">
       <img [src]="cartItem.image" [alt]="cartItem.nom" style="width:70px; height:70px; object-fit:cover;">
@@ -86,7 +92,7 @@
     </div>
   </div>
 
-  <!-- Ligne 3 : + Supprimer - -->
+  <!-- Boutons mobile : incrément, décrément et supprimer -->
   <div class="d-flex justify-content-between align-items-center gap-2 mb-2">
     <button (click)="incrementQuantity()" class="btn btn-light border rounded" style="width:35px; height:35px; font-size:18px;">+</button>
     
@@ -98,7 +104,7 @@
     <button (click)="decrementQuantity()" class="btn btn-light border rounded" style="width:35px; height:35px; font-size:18px;">-</button>
   </div>
 
-  <!-- Ligne 4 : Total -->
+  <!-- Total pour cet article sur mobile -->
   <div class="fw-bold text-end">
     Total: {{ totalItemPrice.toFixed(2) }} €
   </div>

@@ -1,24 +1,40 @@
-<div *ngIf="isLoading" class="text-center my-4">Chargement des produits...</div>
+<!-- Affichage d'un message de chargement si les produits sont en cours de récupération -->
+<div *ngIf="isLoading" class="text-center my-4">
+  Chargement des produits...
+</div>
+
+<!-- Conteneur principal affiché lorsque le chargement est terminé -->
 <div *ngIf="!isLoading" class="container w-100">
   <div class="row my-3">
+
+    <!-- Vérifie si le panier contient des articles -->
     <div *ngIf="cartItems && cartItems.length > 0; else paniervide">
+      <!-- Boucle sur chaque article du panier et affiche le composant app-cart-item -->
       <div *ngFor="let itemData of cartItems">
         <app-cart-item [cartItem]="itemData"></app-cart-item>
       </div>
     </div>
+
+    <!-- Template affiché si le panier est vide -->
     <ng-template #paniervide>
       <div class="text-center my-5">
+        <!-- Message principal lorsque le panier est vide -->
         <p class="fs-5">Votre panier est vide 😔</p>
+
+        <!-- Message secondaire invitant à découvrir les produits -->
         <p class="text-muted">
           Découvrez nos produits et ajoutez vos favoris pour commencer votre
           commande !
         </p>
+
+        <!-- Boutons de navigation vers les produits et les catégories -->
         <div class="d-md-flex justify-content-center gap-3 pt-5">
           <app-link-button
             label="Voir les produits"
             routerLink="/products"
             (click)="handleCloseCart()"
           ></app-link-button>
+
           <app-link-button
             label="Voir les categories"
             routerLink="/categories"
@@ -28,5 +44,6 @@
         </div>
       </div>
     </ng-template>
+
   </div>
 </div>

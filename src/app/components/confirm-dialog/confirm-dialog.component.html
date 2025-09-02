@@ -1,19 +1,32 @@
+<!-- Conteneur principal de la boîte de dialogue -->
 <div class="dialog-container">
+
+  <!-- En-tête de la boîte de dialogue -->
   <div class="dialog-header">
+    <!-- Titre de la boîte de dialogue -->
     <h5 class="dialog-title">Confirmation</h5>
+    <!-- Bouton pour fermer la boîte de dialogue (équivalent à annuler) -->
     <button type="button" class="close-btn" (click)="onCancel()">×</button>
   </div>
+
+  <!-- Corps de la boîte de dialogue avec le message principal -->
   <div class="dialog-body">
     <p>Voulez-vous vraiment continuer ?</p>
   </div>
+
+  <!-- Pied de la boîte de dialogue avec les boutons d'action -->
   <div class="dialog-footer">
+    <!-- Bouton Annuler : ferme la boîte de dialogue sans confirmer -->
     <app-button
-    label="Annuler"
-    (clicked)="onCancel()"   
+      label="Annuler"
+      (clicked)="onCancel()"
     ></app-button>
+
+    <!-- Bouton Confirmer : ferme la boîte de dialogue et confirme l'action -->
     <app-button
-    label="Confirmer"
-    (clicked)="onConfirm()"
+      label="Confirmer"
+      (clicked)="onConfirm()"
     ></app-button>
   </div>
+
 </div>

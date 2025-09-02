@@ -1,34 +1,84 @@
+/*
+ * Projet Flower-Shop
+ * Page : Admin Dashboard
+ *
+ * Description :
+ * Composant du tableau de bord administrateur.
+ * Permet de consulter les statistiques globales : produits, utilisateurs, catégories et commandes.
+ * Contient les observables pour récupérer les données du store NgRx et des méthodes utilitaires pour calculer les totaux et produits les plus achetés.
+ *
+ * Développé par :
+ * OUMAIMA EL OBAYID
+ *
+ * Licence :
+ * Licence MIT
+ * https://opensource.org/licenses/MIT
+ */
+
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectUserInfoConnecter } from '../../../ngrx/auth.slice';
-import { User } from '../../../interfaces/user';
-import { TemplateDashboardComponent } from "../../../components/templates/template-dashboard.component";
+import { Observable } from 'rxjs';
+
+import { TemplateDashboardComponent } from '../../../components/templates/template-dashboard.component';
+import {
+  selectAllOrders,
+  selectCategories,
+  selectProducts,
+  selectUsers,
+} from '../../../ngrx/data.slice';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, TemplateDashboardComponent], // Ajout de CommonModule pour AsyncPipe
+  imports: [CommonModule, TemplateDashboardComponent],
   templateUrl: './adminDashboard.component.html',
-  styleUrls: ['./adminDashboard.component.css']
+  styleUrls: ['./adminDashboard.component.css'],
 })
-export class AdminDashboardComponent implements OnInit {
+export class AdminDashboardComponent {
+  // Observables pour récupérer les données depuis le store NgRx
+  products$!: Observable<any[]>; // Produits
+  users$!: Observable<any[]>; // Utilisateurs
+  categories$!: Observable<any[]>; // Catégories
+  orders$!: Observable<any[]>; // Commandes
 
-  isSidebarOpen:boolean=true;
+  // Pourcentage de produits vendus par catégorie
+  categoryPercentages: { name: string; sold: number; percent: number }[] = [];
 
-  toggleSidebar(){
-   
-    this.isSidebarOpen= !this.isSidebarOpen;
+  constructor(private store: Store) {
+    // Initialisation des observables à partir du store
+    this.products$ = this.store.select(selectProducts);
+    this.users$ = this.store.select(selectUsers);
+    this.categories$ = this.store.select(selectCategories);
+    this.orders$ = this.store.select(selectAllOrders);
   }
 
-  user: User | null = null;
+  // Calcule le total des commandes
+  getOrdersTotal(orders: any[] | undefined): number {
+    if (!orders || orders.length === 0) return 0;
+    return orders.reduce((sum, o) => {
+      // parseFloat pour convertir le string en number
+      const total = parseFloat(o.total);
+      return sum + (isNaN(total) ? 0 : total);
+    }, 0);
+  }
 
-  constructor(private store: Store) {}
+  // Retourne les produits les plus achetés, par défaut top 5
+  getMostPurchasedProducts(orders: any[], topN = 5) {
+    const productCount: Record<string, number> = {};
 
-  ngOnInit(): void {
-    this.store.select(selectUserInfoConnecter).subscribe(userData => {
-      this.user = userData;
+    // Comptabiliser la quantité vendue par produit
+    orders.forEach((order) => {
+      order.items.forEach((item: any) => {
+        if (!productCount[item.product_nom]) productCount[item.product_nom] = 0;
+        productCount[item.product_nom] += item.quantity;
+      });
     });
+
+    // Trier par quantité vendue et retourner les top N
+    return Object.entries(productCount)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, topN)
+      .map(([nom, quantity]) => ({ nom, quantity }));
   }
-  
 }

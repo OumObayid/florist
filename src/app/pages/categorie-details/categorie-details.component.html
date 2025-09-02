@@ -1,8 +1,10 @@
+
 <app-banner-title
   [title]="'Catégorie ' + (categorie?.nom || '')"
   [underTitle]="'Découvrez nos variétés soigneusement sélectionnées'"
 >
 </app-banner-title>
+
 <div class="container my-5">
   <div class="row align-items-center my-5">
     <!-- Image de la catégorie -->
@@ -42,7 +44,8 @@
             <p class="card-text fw-bold">
               {{ product.prix | currency : "EUR" }}
             </p>
-           
+
+            <!-- Bouton pour accéder aux détails du produit -->
             <app-link-button
               label="Voir le produit"
               [routerLink]="['/product-details', product.id]"

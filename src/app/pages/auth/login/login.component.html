@@ -1,73 +1,85 @@
+<!-- 
+  Page Login - Template
+
+  Description:
+  Affiche le formulaire de connexion pour les utilisateurs. 
+  Inclut un titre et sous-titre via le composant BannerTitleComponent, 
+  un formulaire avec email et mot de passe, un bouton de connexion, 
+  un lien pour mot de passe oublié et un lien vers la page d'inscription.
+-->
+
 <app-banner-title
   [title]="'Connectez vous'"
-  [underTitle]="
-    'Découvrez Flowers Oum, l’art floral qui sublime chaque instant.'
-  "
+  [underTitle]="'Découvrez Flowers Oum, l’art floral qui sublime chaque instant.'"
 >
 </app-banner-title>
+
 <div class="container my-5">
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
       <div class="login-form">
-          <!-- Partie gauche (formulaire) -->
-       
-            <div class="text-center mb-2">
-              <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
-                style="width: 150px"
-                alt="logo"
-              />
-            </div>
+        <!-- Partie gauche (formulaire) -->
+        <div class="text-center mb-2">
+          <img
+            src="assets/images/lotus.webp"
+            style="width: 150px"
+            alt="logo"
+          />
+        </div>
 
-            <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
-              <div class="mb-3">
-                <label class="form-label" for="email">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  class="form-control"
-                  placeholder="Entez votre email"
-                  [(ngModel)]="email"
-                  required
-                />
-              </div>
+        <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+          <!-- Champ email -->
+          <div class="mb-3">
+            <label class="form-label" for="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              class="form-control"
+              placeholder="Entrez votre email"
+              [(ngModel)]="email"
+              required
+            />
+          </div>
 
-              <div class="mb-3">
-                <label class="form-label" for="password">Mot de passe</label>
-                <input
-                  type="password"
-                  name="password"
-                  class="form-control"
-                  placeholder="Entez votre mot de passe"
-                  [(ngModel)]="password"
-                />
-              </div>
-              <!-- Message d'erreur -->
-              <div *ngIf="errorMessage" class="alert alert-danger py-1">
-                {{ errorMessage }}
-              </div>
-              <div class="text-center">                
-              <app-button
-              [label]="loading?'en cours ...' : 'Se connecter'"
+          <!-- Champ mot de passe -->
+          <div class="mb-3">
+            <label class="form-label" for="password">Mot de passe</label>
+            <input
+              type="password"
+              name="password"
+              class="form-control"
+              placeholder="Entrez votre mot de passe"
+              [(ngModel)]="password"
+            />
+          </div>
+
+          <!-- Message d'erreur -->
+          <div *ngIf="errorMessage" class="alert alert-danger py-1">
+            {{ errorMessage }}
+          </div>
+
+          <!-- Bouton connexion -->
+          <div class="text-center">
+            <app-button
+              [label]="loading ? 'en cours ...' : 'Se connecter'"
               [disabled]="loading"
               customClass="w-100"
               type="submit"
-              ></app-button>
-              <div><a  class="text-muted" href="#">Mot de passe oublié ?</a></div>
-                
-              </div>
+            ></app-button>
+            <div>
+              <a class="text-muted" href="#">Mot de passe oublié ?</a>
+            </div>
+          </div>
 
-              <div class="text-center mt-4">
-                <p>
-                  Vous n'avez pas de compte ?
-                  <a class="btnAuth" routerLink="/register"> S'inscrire </a>
-                </p>
-              </div>
-            </form>
-     
-
-        </div>
+          <!-- Lien vers l'inscription -->
+          <div class="text-center mt-4">
+            <p>
+              Vous n'avez pas de compte ?
+              <a class="btnAuth" routerLink="/register">S'inscrire</a>
+            </p>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-
+</div>

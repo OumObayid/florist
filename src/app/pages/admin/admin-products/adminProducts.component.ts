@@ -1,3 +1,20 @@
+/*
+ * Projet Flower-Shop
+ * Page : Admin Products
+ *
+ * Description :
+ * Composant de gestion des produits côté administrateur.
+ * Permet d'ajouter, supprimer et afficher les produits avec pagination.
+ * Gère également la sélection d'images et l'affichage de messages de succès ou d'erreur.
+ *
+ * Développé par :
+ * OUMAIMA EL OBAYID
+ *
+ * Licence :
+ * Licence MIT
+ * https://opensource.org/licenses/MIT
+ */
+
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -32,13 +49,19 @@ import { ConfirmDialogComponent } from '../../../components/confirm-dialog/confi
   styleUrls: ['./adminProducts.component.css'],
 })
 export class AdminProductsComponent implements OnInit {
+  // Liste complète de produits
   products: Product[] = [];
+  // Liste paginée des produits affichés
   paginatedProducts: Product[] = [];
+  // Liste des catégories
   categories: Categorie[] = [];
-  isLoadingButtonAdd: boolean = false; //pour la bouton ajouter
-  // Loading spécifique pour chaque produit (bouton supprimer)
+  // Indicateur de chargement pour le bouton "Ajouter"
+  isLoadingButtonAdd: boolean = false;
+  // Indicateur de chargement spécifique pour chaque bouton "Supprimer"
   loadingButtonsList: { [id: number]: boolean } = {};
-  isLoadingListe: boolean = false; //pour affichage de spinner à la place de la liste
+  // Indicateur de chargement de la liste
+  isLoadingListe: boolean = false;
+  // Messages d'état
   successMessage: string = '';
   errorMessage: string = '';
 
@@ -47,7 +70,7 @@ export class AdminProductsComponent implements OnInit {
   itemsPerPage: number = 60;
   totalPages: number = 1;
 
-  // Champs du formulaire
+  // Champs du formulaire d'ajout de produit
   nom: string = '';
   description: string = '';
   prix: number = 0;
@@ -63,6 +86,7 @@ export class AdminProductsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Charger la liste des produits
     this.isLoadingListe = true;
     this.store.select(selectProducts).subscribe((prod) => {
       this.products = prod || [];
@@ -71,18 +95,19 @@ export class AdminProductsComponent implements OnInit {
       if (this.products.length > 0) this.isLoadingListe = false;
     });
 
+    // Charger la liste des catégories
     this.store.select(selectCategories).subscribe((datacat) => {
       this.categories = datacat || [];
     });
   }
 
-  // Gestion de l'image
+  // Gestion de la sélection d'image
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      this.image = input.files[0]; // ✅ Stocker l'image sélectionnée
+      this.image = input.files[0];
 
-      // 🔹 Créer un aperçu de l'image
+      // Créer un aperçu de l'image
       const reader = new FileReader();
       reader.onload = () => {
         this.imagePreview = reader.result as string;
@@ -91,7 +116,7 @@ export class AdminProductsComponent implements OnInit {
     }
   }
 
-  // Ajout produit
+  // Ajout d'un produit
   addProduct(): void {
     this.successMessage = '';
     this.errorMessage = '';
@@ -109,16 +134,15 @@ export class AdminProductsComponent implements OnInit {
       formData.append('description', this.description);
       formData.append('prix', this.prix.toString());
       formData.append('categorie_id', this.categorie_id);
-      // vérifier que l'image existe avant de l'ajouter
+
       if (this.image instanceof File) {
         formData.append('image', this.image);
       } else if (typeof this.image === 'string') {
-        // si tu utilises un base64 ou un nom de fichier côté front
         formData.append('image', this.image);
       }
+
       this.productService.addProduct(formData).subscribe({
         next: (response) => {
-          console.log('response addProduct:', response);
           if (response.success) {
             this.successMessage = 'Produit ajouté avec succès !';
             this.store.dispatch(addProduct(response.product));
@@ -141,9 +165,8 @@ export class AdminProductsComponent implements OnInit {
     }
   }
 
-  // Supprimer produit
+  // Suppression d'un produit
   deleteProduct(id: number) {
-    //utiliser la boite de dialogue de confirmation
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '400px',
     });
@@ -159,9 +182,8 @@ export class AdminProductsComponent implements OnInit {
               this.store.dispatch(deleteProduct(id));
               this.successMessage = 'Produit supprimé';
 
-              // ✅ Mettre à jour la liste locale
+              // Mise à jour locale de la liste
               this.products = this.products.filter((p) => p.id !== id);
-
               this.refreshProductsList(this.products);
             } else {
               this.errorMessage =
@@ -196,7 +218,7 @@ export class AdminProductsComponent implements OnInit {
     }
   }
 
-  // Met à jour products + pagination
+  // Rafraîchir la liste des produits avec gestion de pagination
   private refreshProductsList(
     products: Product[],
     goToLastPage: boolean = false
@@ -212,6 +234,7 @@ export class AdminProductsComponent implements OnInit {
     this.updatePaginatedProducts();
   }
 
+  // Réinitialisation du formulaire
   resetForm(): void {
     this.nom = '';
     this.description = '';

@@ -1,3 +1,4 @@
+
 <app-banner-title
   [title]="'A propos de nous'"
   [underTitle]="
@@ -8,7 +9,7 @@
 
 <div class="container mt-5">
   <div class="row align-items-center">
-    <!-- Image à gauche -->
+    <!-- Image représentant le fleuriste à gauche -->
     <div class="col-lg-6 mb-4 mb-lg-0">
       <img
         src="assets/images/aboutt.webp"
@@ -17,7 +18,7 @@
       />
     </div>
 
-    <!-- Texte à droite -->
+    <!-- Texte descriptif à droite -->
     <div class="col-lg-6 about-text">
       <h2>Flower's Oum</h2>
       <p>
@@ -35,13 +36,16 @@
         simplement le quotidien, nous apportons la touche florale parfaite pour
         exprimer vos émotions et émerveiller vos proches.
       </p>
-    <div class="d-flex justify-content-center">
-      <app-link-button
-        label="Contactez-nous"
-        [routerLink]="['/product-details']"
-        role="button"
-        customClass="mt-3"
-      ></app-link-button></div>
+
+      <!-- Bouton pour redirection vers la page produits -->
+      <div class="d-flex justify-content-center">
+        <app-link-button
+          label="Contactez-nous"
+          [routerLink]="['/product-details']"
+          role="button"
+          customClass="mt-3"
+        ></app-link-button>
+      </div>
     </div>
   </div>
 </div>

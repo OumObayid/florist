@@ -1,3 +1,20 @@
+/*
+ * Projet Flower-Shop
+ * Page : Détails Catégorie
+ *
+ * Description :
+ * Affiche les détails d'une catégorie spécifique ainsi que la liste des produits associés.
+ * Récupère les informations de la catégorie et des produits depuis le store NgRx via des sélecteurs.
+ * Utilise ActivatedRoute pour obtenir l'ID de la catégorie depuis l'URL.
+ *
+ * Développé par :
+ * OUMAIMA EL OBAYID
+ *
+ * Licence :
+ * Licence MIT
+ * https://opensource.org/licenses/MIT
+ */
+
 import { LinkButtonComponent } from './../../components/link-buton/link-buton.component';
 import { Store } from '@ngrx/store';
 import { Component } from '@angular/core';
@@ -12,7 +29,7 @@ import { BannerTitleComponent } from "../../components/banner-title/banner-title
 
 @Component({
   selector: 'app-categorie-details',
-  imports: [CommonModule, FormsModule, RouterLink, BannerTitleComponent,LinkButtonComponent],
+  imports: [CommonModule, FormsModule, RouterLink, BannerTitleComponent, LinkButtonComponent],
   templateUrl: './categorie-details.component.html',
   styleUrls: ['./categorie-details.component.css'],
   standalone: true,
@@ -25,9 +42,10 @@ export class CategorieDetailsComponent {
   constructor(private store: Store, private route: ActivatedRoute) {}
 
   ngOnInit() {
+    // Récupérer l'ID de la catégorie depuis l'URL
     this.id = +this.route.snapshot.paramMap.get('id')!;
 
-    // Récupérer la catégorie
+    // Sélectionner la catégorie correspondante depuis le store
     this.store
       .select(selectCategories)
       .pipe(
@@ -39,7 +57,7 @@ export class CategorieDetailsComponent {
         this.categorie = cat;
       });
 
-    // Récupérer les produits de cette catégorie
+    // Sélectionner les produits de cette catégorie depuis le store
     this.store
       .select(selectProducts)
       .pipe(
@@ -51,5 +69,4 @@ export class CategorieDetailsComponent {
         this.products = filteredProducts;
       });
   }
-  
 }

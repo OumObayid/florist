@@ -1,3 +1,21 @@
+/*
+ * Projet Flower-Shop
+ * Page : Link Button
+ *
+ * Description :
+ * Composant bouton réutilisable pour la navigation. Permet de définir le routerLink, 
+ * les queryParams, le style personnalisé, les classes CSS et d'autres attributs HTML 
+ * tels que role, id, title, target, aria-label et data-test. Comprend plusieurs 
+ * variantes visuelles : vert olive, rouge brique outline, et rouge brique plein.
+ *
+ * Développé par :
+ * OUMAIMA EL OBAYID
+ *
+ * Licence :
+ * Licence MIT
+ * https://opensource.org/licenses/MIT
+ */
+
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -7,6 +25,7 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterLink],
   template: `
+    <!-- Bouton avec routerLink et options personnalisables -->
     <a
       [routerLink]="routerLink"
       [queryParams]="queryParams"
@@ -49,19 +68,20 @@ import { RouterLink } from '@angular/router';
         cursor: not-allowed;
         color: #666;
       }
-  /* Bouton rouge brique outline */
-    .btn-rouge-brique {
-      background: transparent;
-      color: var(--rouge-brique);
-      border: 1px solid var(--rouge-brique);
-    }
 
-    .btn-rouge-brique:hover {
-      background: var(--rouge-brique);
-      color: white;
-    }
+      /* Bouton rouge brique outline */
+      .btn-rouge-brique {
+        background: transparent;
+        color: var(--rouge-brique);
+        border: 1px solid var(--rouge-brique);
+      }
 
-      /* Bouton rouge brique plein  */
+      .btn-rouge-brique:hover {
+        background: var(--rouge-brique);
+        color: white;
+      }
+
+      /* Bouton rouge brique plein */
       .btn-rouge-brique-plein {
         background-color: var(--rouge-brique);
         color: white;
@@ -77,54 +97,30 @@ import { RouterLink } from '@angular/router';
   ],
 })
 export class LinkButtonComponent {
+  // Router link et paramètres optionnels
   @Input() routerLink: any[] | string = '/';
   @Input() queryParams?: Record<string, any>;
 
-  // propriétés communes que tu pourrais avoir besoin
+  // Propriétés personnalisables du bouton
   @Input() label = '';
   @Input() role: string = 'button';
   @Input() id?: string;
   @Input() title?: string;
   @Input() target?: string;
   @Input() ariaLabel?: string;
-  @Input() dataTest?: string; // utile pour les tests e2e
+  @Input() dataTest?: string; // pour tests E2E
   @Input() customClass: string | string[] = '';
   @Input() customStyle: { [klass: string]: any } = {};
 }
-// Exemple d’utilisation
 
-// <app-link-button
-//   label="Voir Produits"
-//   [routerLink]="['/products']"
-// ></app-link-button>
-
-// <app-link-button
-//   label="Détails"
-//   [routerLink]="['/product-details', product.id]"
-//   [queryParams]="{ ref: 'home' }"
-// >
+// Exemples d’utilisation dans les templates (commentés pour documentation)
+// <app-link-button label="Voir Produits" [routerLink]="['/products']"></app-link-button>
+// <app-link-button label="Détails" [routerLink]="['/product-details', product.id]" [queryParams]="{ ref: 'home' }">
 //   <i class="bi bi-eye"></i>
 // </app-link-button>
-
-// <app-link-button
-//   [routerLink]="['/product-details', product.id]"
-//   [queryParams]="{ ref: 'home' }"
-//   label="Voir le produit"
-//   id="btn-voir-produit"
-//   title="Cliquez pour voir le produit"
-//   ariaLabel="Voir le produit {{ product.name }}"
-//   target="_blank"
-//   dataTest="product-btn"
-// >
+// <app-link-button [routerLink]="['/product-details', product.id]" label="Voir le produit" id="btn-voir-produit" title="Cliquez pour voir le produit" ariaLabel="Voir le produit {{ product.name }}" target="_blank" dataTest="product-btn">
 //   <i class="bi bi-eye"></i>
 // </app-link-button>
-
-// <app-link-button
-//   [routerLink]="['/product-details', product.id]"
-//   label="Voir le produit"
-//   customClass="btn-lg text-uppercase shadow"
-//   id="voir-produit"
-//   title="Aller aux détails"
-// >
+// <app-link-button [routerLink]="['/product-details', product.id]" label="Voir le produit" customClass="btn-lg text-uppercase shadow" id="voir-produit" title="Aller aux détails">
 //   <i class="bi bi-eye"></i>
 // </app-link-button>

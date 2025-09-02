@@ -1,10 +1,21 @@
-<app-banner-title [title]="'Nous Contacter'" [underTitle]="'Chez Flowers Oum, nous sommes à votre écoute'"></app-banner-title>
+<!-- 
+  Page : Contact
+  Description :
+  Affiche le formulaire de contact permettant à l'utilisateur d'envoyer son nom, email et message.
+  Inclut également une section Google Map pour localiser l'adresse de Flowers Oum.
+-->
+
+<app-banner-title
+  [title]="'Nous Contacter'"
+  [underTitle]="'Chez Flowers Oum, nous sommes à votre écoute'"
+></app-banner-title>
 
 <div class="container my-5">
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
       <div class="contact-form">
         <form (ngSubmit)="onSubmit()">
+          <!-- Champ Nom -->
           <div class="mb-3">
             <label for="name" class="form-label">Votre Nom</label>
             <input
@@ -17,6 +28,8 @@
               placeholder="Entrez votre nom complet"
             />
           </div>
+
+          <!-- Champ Email -->
           <div class="mb-3">
             <label for="email" class="form-label">Votre Email</label>
             <input
@@ -29,6 +42,8 @@
               placeholder="Entrez votre Email"
             />
           </div>
+
+          <!-- Champ Message -->
           <div class="mb-3">
             <label for="message" class="form-label">Votre Message</label>
             <textarea
@@ -41,12 +56,13 @@
               placeholder="Entrez votre message"
             ></textarea>
           </div>
+
+          <!-- Bouton Envoyer -->
           <div class="text-center">
-           
             <app-button
               label="Envoyer le Message"
               customClass="w-100"
-              type="submit"             
+              type="submit"
             ></app-button>
           </div>
         </form>
@@ -55,7 +71,7 @@
   </div>
 </div>
 
-<!-- Google Map Section -->
+<!-- Section Google Map -->
 <div class="container map-container my-5">
   <h3 class="text-center mb-4">Retrouvez-nous à notre adresse :</h3>
   <div class="row justify-content-center my-5">
@@ -71,4 +87,3 @@
     </div>
   </div>
 </div>
-

@@ -1,7 +1,24 @@
+/*
+ * Projet Flower-Shop
+ * Page : Détails Produit
+ *
+ * Description :
+ * Composant Angular pour afficher les détails d'un produit.
+ * - Récupère le produit courant et les produits liés de la même catégorie via le store NgRx.
+ * - Permet d'ajouter un produit au panier avec gestion des alertes pour l'utilisateur non connecté.
+ * - Gère l'état de chargement et les interactions avec le service de panier.
+ *
+ * Développé par :
+ * OUMAIMA EL OBAYID
+ *
+ * Licence :
+ * Licence MIT
+ * https://opensource.org/licenses/MIT
+ */
+
 import { Product } from './../../interfaces/product';
 import { Store } from '@ngrx/store';
 import { Component } from '@angular/core';
-
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -30,11 +47,23 @@ import { LinkButtonComponent } from "../../components/link-buton/link-buton.comp
     ButtonComponent,
     AlertDialogComponent,
     LinkButtonComponent
-],
+  ],
   templateUrl: './productDetails.component.html',
   styleUrls: ['./productDetails.component.css'],
 })
 export class ProductDetailsComponent {
+  product: Product | undefined; // Produit courant affiché
+  relatedProducts: Product[] = []; // Produits de la même catégorie
+
+  userInfoConnecter: User | null = null; // Info utilisateur connecté
+  isloggedIn: boolean = false; // État de connexion
+  productId!: number; // ID du produit courant
+  userId!: string | null; // ID de l'utilisateur connecté
+  isloading: boolean = false; // Indicateur de chargement pour l'ajout au panier
+
+  showAlertAddToCart: boolean = false; // Affichage de l'alerte ajout panier
+  showAlertConnexion: boolean = false; // Affichage de l'alerte connexion
+
   constructor(
     private store: Store,
     private route: ActivatedRoute,
@@ -43,39 +72,27 @@ export class ProductDetailsComponent {
     private cartState: CartStateService
   ) {}
 
-  product: Product | undefined;
-  relatedProducts: Product[] = []; // ← produits de la même catégorie
-
-  userInfoConnecter: User | null = null;
-  isloggedIn: boolean = false;
-  productId!: number;
-  userId!: string | null;
-  isloading: boolean = false;
-
-  showAlertAddToCart: boolean = false;
-  showAlertConnexion: boolean = false;
-
   ngOnInit() {
-    // const idParam = this.route.snapshot.paramMap.get('id');    
-    // this.productId = idParam ? Number(idParam) : 0;
+    // Récupère l'ID du produit depuis les paramètres de l'URL
+    this.route.params.subscribe(params => {
+      const id = +params['id']; // Convertir en number
+      this.loadProduct(id);
+    });
 
-      this.route.params.subscribe(params => {
-    const id = +params['id']; // convertir en number
-    this.loadProduct(id);
-  });
-
-
+    // Abonnement pour récupérer l'utilisateur connecté
     this.store.select(selectUserInfoConnecter).subscribe((user) => {
       this.userId = user?.id != null ? String(user.id) : null;
     });
+
+    // Abonnement pour vérifier si l'utilisateur est connecté
     this.store.select(selectIsLoggedIn).subscribe((islog) => {
       this.isloggedIn = islog || false;
     });
-  
   }
 
+  // Charge le produit courant et les produits liés
   loadProduct(id: number) {
-  this.store
+    this.store
       .select(selectProducts)
       .pipe(
         map((products) =>
@@ -85,7 +102,7 @@ export class ProductDetailsComponent {
       .subscribe((prod) => {
         this.product = prod;
 
-        // ⚡ Charger les produits similaires après avoir trouvé le produit courant
+        // Charger les produits similaires après avoir trouvé le produit courant
         if (this.product?.categorie_id) {
           this.store
             .select(selectProducts)
@@ -103,8 +120,9 @@ export class ProductDetailsComponent {
             });
         }
       });
-}
+  }
 
+  // Gestion de l'ajout au panier
   handleAddToCart(product: Product): void {
     if (!this.userId) {
       this.showAlertConnexion = true;
@@ -146,6 +164,7 @@ export class ProductDetailsComponent {
       });
   }
 
+  // Gestion de l'alerte ajout au panier
   handleAlertToCart(result: boolean) {
     if (result) {
       this.cartState.openCart();
@@ -154,6 +173,7 @@ export class ProductDetailsComponent {
     }
   }
 
+  // Gestion de l'alerte connexion
   handleAlertToConnect(result: boolean) {
     if (result) {
       this.router.navigate(['/login']);

@@ -1,3 +1,20 @@
+/*
+ * Projet Flower-Shop
+ * Page : Orders - Composant
+ *
+ * Description :
+ * - Affiche la liste des commandes de l’utilisateur
+ * - Récupère les données depuis le store NgRx (orders.slice)
+ * - Utilise TemplateDashboardComponent pour la mise en page
+ *
+ * Développé par :
+ * OUMAIMA EL OBAYID
+ *
+ * Licence :
+ * Licence MIT
+ * https://opensource.org/licenses/MIT
+ */
+
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
@@ -17,17 +34,18 @@ import { LinkButtonComponent } from "../../../components/link-buton/link-buton.c
 })
 export class OrderComponent {
   orders$!: Observable<Order[]>;
-isloading:boolean=false;
+  isloading: boolean = false;
+
   constructor(private store: Store) {}
 
   ngOnInit() {
     this.orders$ = this.store
       .select(selectOrders)
       .pipe(map((orders) => orders.filter((o) => o !== null)));
-    // 🔹 debug: voir ce que contient le store
+
+    // 🔹 Debug : affiche les données dans la console
     this.orders$.subscribe((orders) => {
       console.log('Orders from store:', orders);
     });
   }
-
 }

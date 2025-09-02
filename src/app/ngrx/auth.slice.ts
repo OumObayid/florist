@@ -1,3 +1,21 @@
+/*
+ * Projet Flower-Shop
+ * Page : Auth NGRX Store
+ *
+ * Description :
+ * Définit le store NgRx pour la gestion de l'authentification.
+ * Contient l'état de connexion, les informations de l'utilisateur connecté,
+ * le rôle de l'utilisateur, les actions pour gérer ces données,
+ * le reducer pour appliquer les changements et les sélecteurs pour y accéder.
+ *
+ * Développé par :
+ * OUMAIMA EL OBAYID
+ *
+ * Licence :
+ * Licence MIT
+ * https://opensource.org/licenses/MIT
+ */
+
 // ----------------------- Imports ------------------------------
 import {
   createAction,
@@ -10,9 +28,9 @@ import { User } from '../interfaces/user';
 
 // ------------------- Interface de l'état auth ----------------
 export interface AuthState {
-  isLoggedIn: boolean;
-  userInfoConnecter: User | null;
-  role: string | null;
+  isLoggedIn: boolean; // Indique si l'utilisateur est connecté
+  userInfoConnecter: User | null; // Informations de l'utilisateur connecté
+  role: string | null; // Rôle de l'utilisateur
 }
 
 // ------------------- État initial -----------------------------
@@ -27,9 +45,11 @@ const initialState: AuthState = {
       : null,
 
   userInfoConnecter:
-    typeof window !== 'undefined' && localStorage.getItem('user') && localStorage.getItem('user') !== 'undefined'
-    ? JSON.parse(localStorage.getItem('user')!)
-    : null,
+    typeof window !== 'undefined' &&
+    localStorage.getItem('user') &&
+    localStorage.getItem('user') !== 'undefined'
+      ? JSON.parse(localStorage.getItem('user')!)
+      : null,
 };
 
 // ----------------------- Actions -------------------------------
@@ -66,7 +86,6 @@ export const authReducer = createReducer(
     }
     return { ...state, userInfoConnecter: payload };
   }),
-
   on(setUserRole, (state, { payload }) => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('role', payload);

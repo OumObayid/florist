@@ -1,22 +1,28 @@
 <app-template-dashboard [title]="'Mes informations'">
-  <!-- Informations personnelles -->
+  <!-- Section Informations personnelles -->
   <div class="card mb-4 p-3 shadow-sm">
+    <!-- Entête de la section avec titre et bouton mode édition -->
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h5>Mes informations</h5>
+      <!-- Bouton pour activer/désactiver le mode édition -->
       <app-button
         [label]="editMode ? 'Annuler' : 'Modifier'"
         (clicked)="editMode = !editMode"
       >
       </app-button>
-      <!-- <button class="btn btn-outline-primary btn-sm" (click)="editMode = !editMode">
+      <!-- Ancien bouton commenté
+      <button class="btn btn-outline-primary btn-sm" (click)="editMode = !editMode">
         {{ editMode ? 'Annuler' : 'Modifier' }}
       </button> -->
     </div>
+
+    <!-- Formulaire édition utilisateur (affiché si editMode = true) -->
     <form
       *ngIf="editMode; else readMode"
       #saveUserInfoForm="ngForm"
       (ngSubmit)="saveUserInfo(saveUserInfoForm)"
     >
+      <!-- Ligne prénom / nom -->
       <div class="row mb-2">
         <div class="col-md-6">
           <label>Prénom</label>
@@ -38,6 +44,7 @@
         </div>
       </div>
 
+      <!-- Ligne email / téléphone -->
       <div class="row mb-2">
         <div class="col-md-6">
           <label>Email</label>
@@ -59,6 +66,7 @@
         </div>
       </div>
 
+      <!-- Ligne adresse -->
       <div class="row mb-2">
         <div class="col-12">
           <label>Adresse</label>
@@ -69,18 +77,21 @@
           ></textarea>
         </div>
       </div>
+
+      <!-- Bouton sauvegarde -->
       <div class="text-center">
-      <app-button
-        [disabled]="isloading"
-        [label]="isloading ? 'En cours...' : 'Enregistrer'"
-        type="submit"
-        customClass="mt-2"
-      ></app-button>
+        <app-button
+          [disabled]="isloading"
+          [label]="isloading ? 'En cours...' : 'Enregistrer'"
+          type="submit"
+          customClass="mt-2"
+        ></app-button>
       </div>
     </form>
 
-    <!-- Mode lecture -->
+    <!-- Mode lecture des informations (affiché si editMode = false) -->
     <ng-template #readMode>
+      <!-- Ligne prénom / nom -->
       <div class="row mb-1">
         <div class="col-md-6">
           <strong>Prénom:</strong> {{ userEdit.firstname }}
@@ -89,17 +100,23 @@
           <strong>Nom:</strong> {{ userEdit.lastname }}
         </div>
       </div>
+
+      <!-- Ligne email / téléphone -->
       <div class="row mb-1">
         <div class="col-md-6"><strong>Email:</strong> {{ userEdit.email }}</div>
         <div class="col-md-6">
           <strong>Téléphone:</strong> {{ userEdit.phone }}
         </div>
       </div>
+
+      <!-- Ligne adresse -->
       <div class="row">
         <div class="col-12">
           <strong>Adresse:</strong> {{ userEdit.address }}
         </div>
       </div>
+
+      <!-- Messages de succès / erreur -->
       <div
         *ngIf="successMessage"
         class="alert text-center alert-success py-1 mt-2"
@@ -115,10 +132,11 @@
     </ng-template>
   </div>
 
-  <!-- Changement de mot de passe -->
+  <!-- Section Changement de mot de passe -->
   <div class="card p-3 shadow-sm">
     <h5>Changer le mot de passe</h5>
     <form (ngSubmit)="changePassword()">
+      <!-- Ancien mot de passe -->
       <div class="mb-2">
         <label>Ancien mot de passe</label>
         <input
@@ -129,6 +147,8 @@
           required
         />
       </div>
+
+      <!-- Nouveau mot de passe -->
       <div class="mb-2">
         <label>Nouveau mot de passe</label>
         <input
@@ -139,6 +159,8 @@
           required
         />
       </div>
+
+      <!-- Messages succès / erreur mot de passe -->
       <div
         *ngIf="successMessagePw"
         class="alert text-center alert-success py-1 mt-2"
@@ -151,12 +173,15 @@
       >
         {{ errorMessagePw }}
       </div>
+
+      <!-- Bouton pour changer le mot de passe -->
       <div class="text-center">
-      <app-button
-        [disabled]="isloading"
-        [label]="isloading ? 'En cours...' : 'Modifier le mot de passe'"
-        type="submit"
-      ></app-button></div>
+        <app-button
+          [disabled]="isloading"
+          [label]="isloading ? 'En cours...' : 'Modifier le mot de passe'"
+          type="submit"
+        ></app-button>
+      </div>
     </form>
   </div>
 </app-template-dashboard>

@@ -1,3 +1,19 @@
+/*
+ * Projet Flower-Shop
+ * Page : NgRx Store - Données
+ *
+ * Description :
+ * Définit le store NgRx pour la gestion des données globales : produits, utilisateurs, catégories et commandes.
+ * Contient l'état initial, actions pour CRUD, le reducer et les sélecteurs pour accéder aux données.
+ *
+ * Développé par :
+ * OUMAIMA EL OBAYID
+ *
+ * Licence :
+ * Licence MIT
+ * https://opensource.org/licenses/MIT
+ */
+
 // ----------------------- Imports ------------------------------
 import {
   createAction,
@@ -10,12 +26,13 @@ import { Product } from '../interfaces/product';
 import { User } from '../interfaces/user';
 import { Categorie } from '../interfaces/categorie';
 import { Order } from '../interfaces/order';
+
 // ------------------- Interface de l'état data ----------------
 export interface DataState {
   products: Product[];
   users: User[];
   categories: Categorie[];
-   orders: Order[]; 
+  orders: Order[];
 }
 
 // ------------------- État initial -----------------------------
@@ -23,7 +40,7 @@ const initialState: DataState = {
   products: [],
   users: [],
   categories: [],
-   orders: []
+  orders: []
 };
 
 // ----------------------- Actions -------------------------------
@@ -67,6 +84,7 @@ export const updateRoleUser = createAction(
   '[Users] Update role user',
   (id: number, role: string) => ({ payload: { id, role } })
 );
+
 // ---------- Catégories ----------
 export const getCategories = createAction(
   '[Categories] set categories',
@@ -86,12 +104,12 @@ export const updateCategory = createAction(
   '[Category] Update Category',
   (payload: Categorie) => ({ payload })
 );
+
 // ---------- Orders ----------
 export const setAllOrders = createAction(
   '[Orders] Set All Orders',
   (orders: Order[]) => ({ payload: orders })
 );
-
 export const updateStatusOrder = createAction(
   '[Orders] Update Status',
   (id: number, status: Order['status']) => ({ payload: { id, status } })
@@ -144,13 +162,14 @@ export const dataReducer = createReducer(
     users: state.users.filter((user) => user.id !== payload),
   })),
   on(updateRoleUser, (state, { payload }) => ({
-  ...state,
-  users: state.users.map(user =>
-    user.id === payload.id ? { ...user, role: payload.role } : user
-  )
-})),
-// ---------- Orders ----------
- on(setAllOrders, (state, { payload }) => ({
+    ...state,
+    users: state.users.map(user =>
+      user.id === payload.id ? { ...user, role: payload.role } : user
+    )
+  })),
+
+  // ---------- Orders ----------
+  on(setAllOrders, (state, { payload }) => ({
     ...state,
     orders: payload,
   })),
@@ -164,22 +183,18 @@ export const dataReducer = createReducer(
 
 // ---------------------- Sélecteurs ----------------------------
 export const selectDataState = createFeatureSelector<DataState>('data');
-
 export const selectProducts = createSelector(
   selectDataState,
   (state) => state.products
 );
-
 export const selectUsers = createSelector(
   selectDataState,
   (state) => state.users
 );
-
 export const selectCategories = createSelector(
   selectDataState,
   (state) => state.categories
 );
-
 export const selectAllOrders = createSelector(
   selectDataState,
   (state) => state.orders

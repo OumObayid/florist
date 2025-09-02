@@ -1,16 +1,24 @@
+
 <app-template-dashboard [title]="'Gestion des Commandes'">
   <div class="px-0 border">
+    <!-- Container principal pour les commandes -->
     <ng-container *ngIf="orders$ | async as orders; else loading">
+      <!-- Vérifie si des commandes existent -->
       <div *ngIf="orders.length > 0; else noOrders" class="mb-4">
+        <!-- Boucle sur chaque commande -->
         <div *ngFor="let order of orders" class="card mb-4 shadow-sm">
           <div class="card-body d-flex flex-column">
+
             <!-- ==================== Desktop ==================== -->
+            <!-- Affichage uniquement pour écrans md et plus -->
             <div
               class="d-none d-md-flex justify-content-between align-items-center mb-3 flex-wrap"
             >
+              <!-- Identification de la commande et du client -->
               <h5 class="mb-0">
                 Commande {{ order.id }} - Client {{ order.user_id }}
               </h5>
+              <!-- Sélecteur de statut pour la commande -->
               <select
                 class="form-select w-auto"
                 [(ngModel)]="selectedStatus[order.id]"
@@ -26,6 +34,7 @@
             <div class="row g-3 d-none d-md-flex">
               <div *ngFor="let item of order.items" class="col-6">
                 <div class="card h-100 p-2 d-flex flex-row align-items-center">
+                  <!-- Lien vers la page produit -->
                   <a [routerLink]="['/product-details', item.product_id]">
                     <img
                       [src]="item.product_image"
@@ -34,6 +43,7 @@
                       style="width: 65px; height: 65px; object-fit: cover"
                     />
                   </a>
+                  <!-- Détails du produit -->
                   <div class="flex-grow-1">
                     <p class="mb-1 fw-semibold">{{ item.product_nom }}</p>
                     <p class="mb-1 text-muted small">
@@ -48,10 +58,13 @@
             </div>
 
             <!-- ==================== Mobile ==================== -->
+            <!-- Affichage pour écrans plus petits que md -->
             <div class="d-md-none mb-3">
+              <!-- Identification de la commande -->
               <h5 class="mb-2">
                 Commande {{ order.id }} - Client {{ order.user_id }}
               </h5>
+              <!-- Sélecteur de statut responsive -->
               <select
                 class="form-select w-100 mb-3"
                 [(ngModel)]="selectedStatus[order.id]"
@@ -67,6 +80,7 @@
                 *ngFor="let item of order.items"
                 class="card mb-2 p-2 d-flex flex-row align-items-center"
               >
+                <!-- Lien vers la page produit -->
                 <a [routerLink]="['/product-details', item.product_id]">
                   <img
                     [src]="item.product_image"
@@ -75,6 +89,7 @@
                     style="width: 65px; height: 65px; object-fit: cover"
                   />
                 </a>
+                <!-- Détails du produit -->
                 <div class="flex-grow-1">
                   <p class="mb-1 fw-semibold">{{ item.product_nom }}</p>
                   <p class="mb-1 text-muted small">
@@ -91,20 +106,21 @@
             <div class="mt-3 text-end">
               <p class="fw-bold fs-5 mb-2">
                 <span style="color: var(--vert-oliv-fonc)">Total payé : </span>
-                <span style="color: var(--vert-olive)"
-                  >{{ order.total }} $</span
-                >
+                <span style="color: var(--vert-olive)">{{ order.total }} $</span>
               </p>
             </div>
+
           </div>
         </div>
       </div>
     </ng-container>
 
+    <!-- Template affiché lors du chargement -->
     <ng-template #loading>
       <p class="text-muted">Chargement des commandes...</p>
     </ng-template>
 
+    <!-- Template affiché si aucune commande n'est trouvée -->
     <ng-template #noOrders>
       <p class="text-muted">Aucune commande trouvée.</p>
     </ng-template>

@@ -3,18 +3,23 @@
   [underTitle]="'Rejoignez-nous dès maintenant pour profiter pleinement !'"
 >
 </app-banner-title>
+
 <div class="container my-5">
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
       <div class="register-form">
+        <!-- Logo de la page -->
         <div class="text-center mb-2">
           <img
-            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+            src="assets/images/lotus.webp"
             style="width: 150px"
             alt="logo"
           />
         </div>
+
+        <!-- Formulaire d'inscription -->
         <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)">
+          <!-- Champ Nom -->
           <div class="mb-3">
             <label class="form-label" for="lastname">Nom</label>
             <input
@@ -26,6 +31,8 @@
               placeholder="Entrez votre nom"
             />
           </div>
+
+          <!-- Champ Prénom -->
           <div class="mb-3">
             <label class="form-label" for="firstname">Prénom</label>
             <input
@@ -38,6 +45,7 @@
             />
           </div>
 
+          <!-- Champ Téléphone -->
           <div class="mb-3">
             <label class="form-label" for="phone">Phone</label>
             <input
@@ -50,6 +58,7 @@
             />
           </div>
 
+          <!-- Champ Email -->
           <div class="mb-3">
             <label class="form-label" for="email">Email</label>
             <input
@@ -62,6 +71,7 @@
             />
           </div>
 
+          <!-- Champ Mot de passe -->
           <div class="mb-3">
             <label class="form-label" for="password">Password</label>
             <input
@@ -73,19 +83,22 @@
               placeholder="Entez votre mot de passe"
             />
           </div>
+
+          <!-- Messages d'erreur ou de succès -->
           <p *ngIf="errorMessage" class="alert alert-danger py-1">{{ errorMessage }}</p>
-          <p *ngIf="successMessage" class="success">
-            {{ successMessage }}
-          </p>
+          <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+
+          <!-- Bouton d'inscription -->
           <div class="text-center">
-           
-             <app-button
-              [label]="isloading?'en cours ...' : 's\'inscrire'"
+            <app-button
+              [label]="isloading ? 'en cours ...' : 's\'inscrire'"
               [disabled]="isloading"
               customClass="w-100"
               type="submit"
-              ></app-button>
+            ></app-button>
           </div>
+
+          <!-- Lien vers la page de connexion -->
           <div class="text-center mt-4">
             <p>
               Vous avez un compte ?

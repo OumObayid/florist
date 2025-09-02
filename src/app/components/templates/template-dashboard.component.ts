@@ -1,3 +1,21 @@
+/*
+ * Projet Flower-Shop
+ * Page : Template Dashboard
+ *
+ * Description :
+ * Composant réutilisable pour les pages du tableau de bord.
+ * Affiche un titre de page, un séparateur horizontal et un conteneur
+ * pour insérer dynamiquement le contenu spécifique de chaque page.
+ *
+ * Développé par :
+ * OUMAIMA EL OBAYID
+ *
+ * Licence :
+ * Licence MIT
+ * https://opensource.org/licenses/MIT
+ */
+
+// Composant TemplateDashboard
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -23,11 +41,10 @@ import { Component, Input } from '@angular/core';
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
       }
       .page-title {
-      
         font-weight: 600;
         margin-bottom: 0.5rem;
-        color: var( --vert-olive-fonc);
-        text-align:center
+        color: var(--vert-olive-fonc);
+        text-align: center;
       }
       .page-hr {
         border: 1px solid var(--vert-olive-fonc);
@@ -40,5 +57,6 @@ import { Component, Input } from '@angular/core';
   ],
 })
 export class TemplateDashboardComponent {
+  // Titre de la page affiché en haut
   @Input() title: string = 'Titre de la page';
 }

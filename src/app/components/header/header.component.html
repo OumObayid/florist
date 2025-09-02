@@ -1,36 +1,37 @@
 <!-- Conteneur fixe pour topbar et navbar -->
 <nav class="fixed-top" id="nvbar">
-  <!-- Topbar -->
+
+  <!-- Topbar avec icônes des réseaux sociaux -->
   <header class="topbar">
     <div class="container">
       <div class="row">
         <div class="col-12">
           <ul class="social-network">
+            <!-- Facebook -->
             <li>
               <a class="waves-effect waves-dark" href="#" aria-label="Facebook">
                 <i class="fab fa-facebook"></i>
               </a>
             </li>
-
+            <!-- Twitter -->
             <li class="ms-3">
               <a class="waves-effect waves-dark" href="#" aria-label="Twitter">
                 <i class="fab fa-twitter"></i>
               </a>
             </li>
+            <!-- Instagram -->
             <li class="ms-3">
-              <a
-                class="waves-effect waves-dark"
-                href="#"
-                aria-label="Instagram"
-              >
+              <a class="waves-effect waves-dark" href="#" aria-label="Instagram">
                 <i class="fab fa-instagram"></i>
               </a>
             </li>
+            <!-- LinkedIn -->
             <li class="ms-3">
               <a class="waves-effect waves-dark" href="#" aria-label="LinkedIn">
                 <i class="fab fa-linkedin"></i>
               </a>
             </li>
+            <!-- YouTube -->
             <li class="ms-3">
               <a class="waves-effect waves-dark" href="#" aria-label="YouTube">
                 <i class="fab fa-youtube"></i>
@@ -42,207 +43,139 @@
     </div>
   </header>
 
-  <!-- Navbar -->
-  <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
-  <div class="container">
-    <!-- Logo -->
-    <a
-      class="logo"
-      routerLink="/"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }"
-    >
-      Flower's Oum
-    </a>
+  <!-- Navbar principale -->
+  <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
+    <div class="container">
+      <!-- Logo -->
+      <a class="logo" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        Flower's Oum
+      </a>
 
-    <!-- Toggler -->
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarResponsive"
-      aria-controls="navbarResponsive"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <!-- Bouton toggle pour mobile -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <!-- Collapse -->
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ms-auto">
+      <!-- Liens du menu collapsible -->
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ms-auto">
 
-        <!-- Lien simple -->
-        <li class="nav-item">
-          <a
-            routerLink="/"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-            class="nav-link"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarResponsive"
-          >
-            Accueil
-          </a>
-        </li>
+          <!-- Lien Accueil -->
+          <li class="nav-item">
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+              class="nav-link" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+              Accueil
+            </a>
+          </li>
 
-        <!-- Dropdown Produits -->
-        <li class="nav-item mt-md-2  dropdown item-products" routerLinkActive="active">
-          <a
-            class="nav-link dropdown-toggle pt-md-0"
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Produits
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li>
-              <a
-                class="dropdown-item"
-                routerLink="/categories"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarResponsive"
-              >
-                Toutes les catégories
+          <!-- Dropdown Produits -->
+          <li class="nav-item mt-md-2 dropdown item-products" routerLinkActive="active">
+            <a class="nav-link dropdown-toggle pt-md-0" href="#" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Produits
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" routerLink="/categories"
+                  data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+                  Toutes les catégories
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/products"
+                  data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+                  Tous les produits
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Lien À propos -->
+          <li class="nav-item mb-md-0">
+            <a routerLink="/about" routerLinkActive="active"
+              class="nav-link" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+              À propos
+            </a>
+          </li>
+
+          <!-- Lien Contact -->
+          <li class="nav-item mb-2 mb-md-0">
+            <a routerLink="/contact" routerLinkActive="active"
+              class="nav-link" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+              Contact
+            </a>
+          </li>
+
+          <!-- Menu pour utilisateur non connecté -->
+          <ng-container *ngIf="!isloggedIn">
+            <li class="nav-item mb-2 mb-md-0">
+              <a routerLink="/login" routerLinkActive="active"
+                class="nav-link" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+                Login
               </a>
             </li>
-            <li>
-              <a
-                class="dropdown-item"
-                routerLink="/products"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarResponsive"
-              >
-                Tous les produits
+            <li class="nav-item mb-2 mb-md-0">
+              <a routerLink="/register" routerLinkActive="active"
+                class="nav-link" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+                Register
               </a>
             </li>
-          </ul>
-        </li>
+          </ng-container>
 
-        <!-- Lien simple -->
-        <li class="nav-item  mb-md-0">
-          <a
-            routerLink="/about"
-            routerLinkActive="active"
-            class="nav-link"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarResponsive"
-          >
-            À propos
-          </a>
-        </li>
-        <li class="nav-item mb-2 mb-md-0">
-          <a
-            routerLink="/contact"
-            routerLinkActive="active"
-            class="nav-link"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarResponsive"
-          >
-            Contact
-          </a>
-        </li>
+          <!-- Menu pour utilisateur connecté -->
+          <ng-container *ngIf="isloggedIn">
+            <li class="nav-item mt-md-2 dropdown item-products mb-2 mb-md-0" routerLinkActive="active">
+              <a class="nav-link dropdown-toggle pt-0" href="#" id="navbarDropdownUser"
+                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ lastName }}
+              </a>
 
-        <!-- Non connecté -->
-        <ng-container *ngIf="!isloggedIn">
-          <li class="nav-item mb-2 mb-md-0">
-            <a
-              routerLink="/login"
-              routerLinkActive="active"
-              class="nav-link"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarResponsive"
-            >
-              Login
-            </a>
-          </li>
-          <li class="nav-item mb-2 mb-md-0">
-            <a
-              routerLink="/register"
-              routerLinkActive="active"
-              class="nav-link"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarResponsive"
-            >
-              Register
-            </a>
-          </li>
-        </ng-container>
+              <!-- Dropdown pour utilisateur normal -->
+              <div *ngIf="userRole === 'user'" class="dropdown-menu" aria-labelledby="navbarDropdownUser">
+                <li><a class="dropdown-item" routerLink="/user" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Dashboard</a></li>
+                <li><a class="dropdown-item" routerLink="/user/profil" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Profil</a></li>
+                <li><a class="dropdown-item" routerLink="/user/order" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Mes commandes</a></li>
+                <li><a class="dropdown-item" routerLink="/user/settings" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Paramètres</a></li>
+                <div class="dropdown-divider"></div>
+                <li><a class="dropdown-item" style="cursor: pointer" (click)="logout()">Se déconnecter</a></li>
+              </div>
 
-        <!-- Connecté -->
-        <ng-container *ngIf="isloggedIn">
-          <li class="nav-item mt-md-2 dropdown item-products mb-2 mb-md-0" routerLinkActive="active">
-            <a
-              class="nav-link dropdown-toggle pt-0"
-              href="#"
-              id="navbarDropdownUser"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              {{ lastName }}
-            </a>
+              <!-- Dropdown pour administrateur -->
+              <div *ngIf="userRole === 'admin'" class="dropdown-menu" aria-labelledby="navbarDropdownUser">
+                <li><a class="dropdown-item" routerLink="/admin" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Dashboard</a></li>
+                <li><a class="dropdown-item" routerLink="/admin/categories" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Categories</a></li>
+                <li><a class="dropdown-item" routerLink="/admin/products" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Produits</a></li>
+                <li><a class="dropdown-item" routerLink="/admin/users" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Utilisateurs</a></li>
+                <li><a class="dropdown-item" routerLink="/admin/orders" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Commandes</a></li>
+                <li><a class="dropdown-item" routerLink="/admin/settings" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Paramètres</a></li>
+                <div class="dropdown-divider"></div>
+                <li><a class="dropdown-item" style="cursor: pointer" (click)="logout()">Se déconnecter</a></li>
+              </div>
+            </li>
+          </ng-container>
 
-            <!-- Dropdown user normal -->
-            <div *ngIf="userRole === 'user'" class="dropdown-menu" aria-labelledby="navbarDropdownUser">
-              <li>
-                <a class="dropdown-item" routerLink="/user" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Dashboard</a>
-              </li>
-              <li>
-                <a class="dropdown-item" routerLink="/user/profil" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Profil</a>
-              </li>
-              <li>
-                <a class="dropdown-item" routerLink="/user/order" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Mes commandes</a>
-              </li>
-              <li>
-                <a class="dropdown-item" routerLink="/user/settings" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Paramètres</a>
-              </li>
-              <div class="dropdown-divider"></div>
-              <li>
-                <a class="dropdown-item" style="cursor: pointer" (click)="logout()">Se déconnecter</a>
-              </li>
-            </div>
-
-            <!-- Dropdown admin -->
-            <div *ngIf="userRole === 'admin'" class="dropdown-menu" aria-labelledby="navbarDropdownUser">
-              <li><a class="dropdown-item" routerLink="/admin" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Dashboard</a></li>
-              <li><a class="dropdown-item" routerLink="/admin/categories" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Categories</a></li>
-              <li><a class="dropdown-item" routerLink="/admin/products" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Produits</a></li>
-              <li><a class="dropdown-item" routerLink="/admin/users" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Utilisateurs</a></li>
-              <li><a class="dropdown-item" routerLink="/admin/orders" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Commandes</a></li>
-              <li><a class="dropdown-item" routerLink="/admin/settings" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">Paramètres</a></li>
-              <div class="dropdown-divider"></div>
-              <li>
-                <a class="dropdown-item" style="cursor: pointer" (click)="logout()">Se déconnecter</a>
-              </li>
-            </div>
-          </li>
-        </ng-container>
-
-        <!-- Cart -->
-        <li class="nav-item mt-md-2 mb-2 mb-md-0">
-          <a href="#" (click)="toggleCartSlide($event)">
-            <span class="position-relative d-inline-block">
-              <i class="fas fa-shopping-cart fa-lg fs-4"></i>
-              <span *ngIf="cartCount > 0" class="position-absolute start-100 translate-middle badge bbadge rounded-pill bg-danger">
-                {{ cartCount }}
-                <span class="visually-hidden">articles dans le panier</span>
+          <!-- Icône panier -->
+          <li class="nav-item mt-md-2 mb-2 mb-md-0">
+            <a href="#" (click)="toggleCartSlide($event)">
+              <span class="position-relative d-inline-block">
+                <i class="fas fa-shopping-cart fa-lg fs-4"></i>
+                <!-- Badge indiquant le nombre d'articles dans le panier -->
+                <span *ngIf="cartCount > 0" class="position-absolute start-100 translate-middle badge bbadge rounded-pill bg-danger">
+                  {{ cartCount }}
+                  <span class="visually-hidden">articles dans le panier</span>
+                </span>
               </span>
-            </span>
-          </a>
-        </li>
+            </a>
+          </li>
 
-      </ul>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-
-  <!-- Slide panier -->
+  <!-- Slide du panier -->
   <nav class="slider-cart">
     <div class="cart-slide" [class.open]="isCartOpen">
       <div class="cart-header">
@@ -250,33 +183,25 @@
         <button class="btn-close" (click)="toggleCartSlide($event)">×</button>
       </div>
       <div class="cart-body">
-        <!-- Le (click) déclenche la méthode onCloseClick du composant CartSlideComponent -->
-        <app-carts
-          *ngIf="isCartOpen"
-          (closeSlide)="isCartOpen = false"
-        ></app-carts>
+        <!-- Composant du panier -->
+        <app-carts *ngIf="isCartOpen" (closeSlide)="isCartOpen = false"></app-carts>
       </div>
 
+      <!-- Footer avec total et bouton commander -->
       <div class="cart-footer" *ngIf="cartTotal > 0">
         <div class="total">
           <span>Total :</span>
           <span>{{ cartTotal.toFixed(2) }} €</span>
         </div>
-        <button (click)="openOrderSlide()" class="btn-checkout">
-          Commander
-        </button>
+        <button (click)="openOrderSlide()" class="btn-checkout">Commander</button>
       </div>
     </div>
 
-    <!-- Fond noir -->
-    <div
-      class="cart-overlay"
-      *ngIf="isCartOpen"
-      (click)="toggleCartSlide($event)"
-    ></div>
+    <!-- Overlay noir derrière le panier -->
+    <div class="cart-overlay" *ngIf="isCartOpen" (click)="toggleCartSlide($event)"></div>
   </nav>
 
-  <!-- Slide order -->
+  <!-- Slide résumé de commande -->
   <nav>
     <div class="cart-slide" [class.open]="isOrderOpen">
       <div class="cart-header">
@@ -288,11 +213,8 @@
       </div>
     </div>
 
-    <!-- Fond noir -->
-    <div
-      class="cart-overlay"
-      *ngIf="isOrderOpen"
-      (click)="toggleCartSlide($event)"
-    ></div>
+    <!-- Overlay noir derrière le slide commande -->
+    <div class="cart-overlay" *ngIf="isOrderOpen" (click)="toggleCartSlide($event)"></div>
   </nav>
+
 </nav>

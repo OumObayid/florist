@@ -1,8 +1,10 @@
+
 <app-banner-title
   [title]="product?.nom || ''"
   [underTitle]="'Un feuillage unique pour une touche exotique.'"
 >
 </app-banner-title>
+
 <div class="container my-5">
   <div class="row">
     <!-- Image du produit -->
@@ -13,7 +15,6 @@
         alt="{{ product?.nom }}"
         class="img-fluid product-detail-img"
       />
-
     </div>
 
     <!-- Informations du produit -->
@@ -22,53 +23,56 @@
         <h2 class="product-name">{{ product?.nom }}</h2>
         <p class="product-description">{{ product?.description }}</p>
         <p class="product-price">{{ product?.prix | currency }}</p>
+
+        <!-- Bouton d’ajout au panier -->
         <div *ngIf="product">
           <div class="d-flex justify-content-center">
-          <app-button
-            [label]="isloading ? 'demande en cours...' : 'Ajouter au panier'"
-            [disabled]="isloading"
-            customClass="w-100"
-            type="button"
-            (clicked)="handleAddToCart(product)"
-          ></app-button
-        ></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-  <hr class="my-4" />
-
-  <div class="container my-5">
-    <h3 class="mb-4 text-center">Produits similaires</h3>
-
-    <div class="product-carousel">
-      <div class="product-track">
-        <div class="card product-item" *ngFor="let product of relatedProducts">
-          <img
-            [src]="product.image"
-            class="card-img-top"
-            alt="{{ product.nom }}"
-          />
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">{{ product.nom }}</h5>
-            <p class="card-text fw-bold">
-              {{ product.prix | currency : "EUR" }}
-            </p>
-           
-            
-            <app-link-button
-              label="Voir le produit"
-              [routerLink]="['/product-details', product.id]"
-            ></app-link-button>
+            <app-button
+              [label]="isloading ? 'demande en cours...' : 'Ajouter au panier'"
+              [disabled]="isloading"
+              customClass="w-100"
+              type="button"
+              (clicked)="handleAddToCart(product)"
+            ></app-button>
           </div>
         </div>
       </div>
     </div>
   </div>
-<!-- afficher alert dialog -->
+</div>
+
+<hr class="my-4" />
+
+<!-- Section Produits similaires -->
+<div class="container my-5">
+  <h3 class="mb-4 text-center">Produits similaires</h3>
+
+  <div class="product-carousel">
+    <div class="product-track">
+      <div class="card product-item" *ngFor="let product of relatedProducts">
+        <img
+          [src]="product.image"
+          class="card-img-top"
+          alt="{{ product.nom }}"
+        />
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ product.nom }}</h5>
+          <p class="card-text fw-bold">
+            {{ product.prix | currency : "EUR" }}
+          </p>
+
+          <!-- Bouton voir le produit -->
+          <app-link-button
+            label="Voir le produit"
+            [routerLink]="['/product-details', product.id]"
+          ></app-link-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Alertes : ajout au panier et connexion -->
 <app-alert-dialog
   [visible]="showAlertAddToCart"
   title="Produit ajouté !"

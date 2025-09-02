@@ -1,8 +1,59 @@
-<app-template-dashboard [title]="'Tableau de bord'">
-  <div class=" mt-4">
-    <h3  class="text-center">
-      Bienvenue, {{ userConnected?.firstname }} 👋
-    </h3>
 
+<app-template-dashboard [title]="'Tableau de bord'">
+  <div class="mt-4">
+    <div class="my-4">
+      <div class="row g-3">
+        
+        <!-- =====================
+             Profil utilisateur
+             Dégradé brun/rouge
+        ====================== -->
+        <div class="col-md-4" *ngIf="userInfo$ | async as userInfo">
+          <div class="card shadow-sm dashboard-card h-100 text-dark" 
+               style="background: linear-gradient(to bottom right, #b16565, #f0b3b3);">
+            <h5 class="card-title text-white">Profil</h5>
+            <p><strong>Nom:</strong> {{ userInfo.firstname }} {{ userInfo.lastname }}</p>
+            <p><strong>Email:</strong> {{ userInfo.email }}</p>
+          </div>
+        </div>
+
+        <!-- =====================
+             Panier utilisateur
+             Dégradé orange
+        ====================== -->
+        <div class="col-md-4" *ngIf="cartItems$ | async as cartItems">
+          <div class="card shadow-sm dashboard-card h-100 text-dark" 
+               style="background: linear-gradient(to bottom right, #f5a623, #f6d098);">
+            <h5 class="card-title text-white">Panier</h5>
+            <p><strong>Articles:</strong> {{ cartItems.length }}</p>
+            <p>
+              <strong>Total:</strong>
+              {{ getCartTotal(cartItems) | currency:'USD':'symbol':'1.2-2' }}
+            </p>
+          </div>
+        </div>
+
+        <!-- =====================
+             Commandes utilisateur
+             Dégradé vert
+        ====================== -->
+        <div class="col-md-4" *ngIf="orders$ | async as orders">
+          <div class="card shadow-sm dashboard-card h-100 text-dark" 
+               style="background: linear-gradient(to bottom right, #8b923e, #eaf293);">
+            <h5 class="card-title text-white">Commandes</h5>
+            <p><strong>Total:</strong> {{ orders.length }}</p>
+            <p>
+              <strong>Montant dépensé:</strong>
+              {{ getOrdersTotal(orders) | currency:'USD':'symbol':'1.2-2' }}
+            </p>
+            <p *ngIf="orders.length > 0">
+              <strong>Dernière:</strong>
+              {{ orders[0].created_at | date }} ({{ orders[0].status }})
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 </app-template-dashboard>

@@ -1,23 +1,34 @@
+<!-- 
+  Banner affichant le titre et le sous-titre de la page Catégories
+  Fournit un contexte sur les différentes catégories disponibles dans la boutique
+-->
 <app-banner-title
   [title]="'Tous les categories de Flowers Oum'"
-  [underTitle]="
-    'Des bouquets variés, classés par catégories pour chaque moment.'
-  "
+  [underTitle]="'Des bouquets variés, classés par catégories pour chaque moment.'"
 >
 </app-banner-title>
+
 <div class="container my-5">
   <div class="row">
+    <!-- Boucle sur toutes les catégories pour les afficher sous forme de cartes -->
     <div class="col-md-4 mt-2" *ngFor="let categorie of categories">
       <div class="card categorie-card">
-        <img [src]="categorie.image" class="card-img-top categorie-img" alt="{{ categorie.nom }}">
-        <div class="card-body ">
+        <!-- Image de la catégorie -->
+        <img
+          [src]="categorie.image"
+          class="card-img-top categorie-img"
+          alt="{{ categorie.nom }}"
+        />
+        <div class="card-body">
+          <!-- Nom de la catégorie -->
           <h5 class="card-title">{{ categorie.nom }}</h5>
-         
+
+          <!-- Bouton pour accéder aux détails de la catégorie -->
           <app-link-button
-          [routerLink]="['/categorie-details', categorie.id]"
-          label="Voir Détails"
-          customClass="mt-3"
-          >            
+            [routerLink]="['/categorie-details', categorie.id]"
+            label="Voir Détails"
+            customClass="mt-3"
+          >
           </app-link-button>
         </div>
       </div>
