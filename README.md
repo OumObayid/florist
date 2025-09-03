@@ -78,5 +78,5 @@ ng serve
 ---
 
 ## Aperçu
-[Voir le site en ligne](https://florist.oumportfolio.com)
+[!Voir le site en ligne](https://florist.oumportfolio.com)
 Vous pouvez visiter le site hébergé ici : [Voir le site Flower-Shop](https://florist.oumportfolio.com)
