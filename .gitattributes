@@ -1,24 +1,25 @@
-# --- Forcer Angular en TypeScript ---
+# --- Frontend Angular ---
 *.ts linguist-language=TypeScript
 *.tsx linguist-language=TypeScript
-
-# --- HTML et SCSS reconnus mais secondaires ---
 *.html linguist-language=HTML
 *.scss linguist-language=SCSS
 
-# --- Ignorer JS/CSS compilés ---
+# --- Ignorer le backend Laravel pour GitHub Linguist ---
+/api/* linguist-vendored
+
+# --- Ignorer dossiers générés / node_modules ---
+/angular-frontend/dist/* linguist-vendored
+/angular-frontend/node_modules/* linguist-vendored
+/api/vendor/* linguist-vendored
+/storage/* linguist-vendored
+
+# --- Ignorer CSS/JS compilés ---
 *.js linguist-vendored
 *.css linguist-vendored
 *.map linguist-vendored
 
-# --- Ignorer les dossiers générés ---
-/dist/* linguist-vendored
-/node_modules/* linguist-vendored
-/.angular/* linguist-vendored
-
-# --- Docs non comptées ---
+# --- Documentation ---
 *.md linguist-documentation
-CHANGELOG.md linguist-documentation
 /.github/* linguist-vendored
 
 # --- Normalisation des fins de lignes ---
