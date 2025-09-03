@@ -1,5 +1,4 @@
 # 🌸 Flower-Shop
-
 [![Angular](https://img.shields.io/badge/Angular-13-red?style=for-the-badge&logo=angular&logoColor=white)](https://angular.io/)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-5-purple?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/fr/docs/Web/CSS)
