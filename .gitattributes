@@ -1,22 +1,25 @@
-# --- Forcer Angular à être reconnu en TypeScript ---
+# --- Forcer Angular en TypeScript ---
 *.ts linguist-language=TypeScript
+*.tsx linguist-language=TypeScript
 
-# --- Compter HTML/SCSS comme liés à Angular, pas principaux ---
+# --- HTML et SCSS reconnus mais secondaires ---
 *.html linguist-language=HTML
 *.scss linguist-language=SCSS
-*.css linguist-vendored
+
+# --- Ignorer JS/CSS compilés ---
 *.js linguist-vendored
+*.css linguist-vendored
 *.map linguist-vendored
 
-# --- Ignorer les dossiers générés ou vendored ---
+# --- Ignorer les dossiers générés ---
 /dist/* linguist-vendored
 /node_modules/* linguist-vendored
 /.angular/* linguist-vendored
 
-# --- Documentation ignorée ---
+# --- Docs non comptées ---
 *.md linguist-documentation
 CHANGELOG.md linguist-documentation
 /.github/* linguist-vendored
 
-# --- Force auto-normalisation des fins de lignes ---
+# --- Normalisation des fins de lignes ---
 * text=auto
