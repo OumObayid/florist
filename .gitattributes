@@ -1,19 +1,17 @@
-# --- Frontend Angular ---
+# --- Angular Frontend ---
 *.ts linguist-language=TypeScript
 *.tsx linguist-language=TypeScript
 *.html linguist-language=HTML
 *.scss linguist-language=SCSS
 
-# --- Ignorer le backend Laravel pour GitHub Linguist ---
-/api/* linguist-vendored
+# --- Ignorer les fichiers PHP utilisés juste pour backend simple ---
+*.php linguist-vendored
 
-# --- Ignorer dossiers générés / node_modules ---
+# --- Ignorer dossiers générés / node_modules / dist ---
 /angular-frontend/dist/* linguist-vendored
 /angular-frontend/node_modules/* linguist-vendored
-/api/vendor/* linguist-vendored
-/storage/* linguist-vendored
 
-# --- Ignorer CSS/JS compilés ---
+# --- JS/CSS compilés ---
 *.js linguist-vendored
 *.css linguist-vendored
 *.map linguist-vendored
