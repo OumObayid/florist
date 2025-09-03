@@ -77,5 +77,3 @@ ng serve
 
 ---
 
-## Aperçu
-[![Voir le site en ligne](https://img.shields.io/badge/Visiter-FlowerShop-blue)](https://florist.oumportfolio.com)
