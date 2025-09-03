@@ -69,15 +69,13 @@ git clone https://github.com/oumobayid/flower-shop.git
 cd flower-shop
 
 # Installer les dépendances
+
+npm install
+
+# Lancer le projet Angular
+ng serve
 ```
 
 ##🚀 Démo
 
 👉 [Lien vers le site](https://florist.oumportfolio.com/)
-npm install
-
-# Lancer le projet Angular
-ng serve
-
----
-
