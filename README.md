@@ -78,4 +78,4 @@ ng serve
 ---
 
 ## Aperçu
-https://florist.oumportfolio.com
+[Voir le site en ligne](https://florist.oumportfolio.com)
