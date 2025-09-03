@@ -42,10 +42,10 @@ import { CommonModule } from '@angular/common';
       <button
         class="btn d-md-none shadow-none border-0"
         (click)="sidebarVisible = !sidebarVisible"
-        style="z-index: 1020; position: fixed; top: 120px; left: 0px;"
+        style="z-index: 1020; position: fixed; top: 90px; left: 14px;"
       >
         <i
-          style="color:var(--rouge-brique); font-size:25px"
+          style="color:orange; font-size:25px"
           class="fa-solid"
           [ngClass]="{ 'fa-arrow-circle-right ': !sidebarVisible, 'fa-arrow-circle-left': sidebarVisible }"
         ></i>
@@ -74,18 +74,17 @@ import { CommonModule } from '@angular/common';
       /* Sidebar mobile cachée par défaut */
       .mobile-sidebar {
         position: fixed;
-        top: 95px;
+        top: 60px;
         left: -275px;
         width: 250px;
         height: 100%;
         transition: left 0.3s ease;
         z-index: 1000;
-        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
       }
 
       /* Sidebar mobile visible */
       .mobile-sidebar.show {
-        left: 0;
+        left: -10px;
       }
 
       /* Overlay semi-transparent derrière la sidebar mobile */
@@ -101,7 +100,7 @@ import { CommonModule } from '@angular/common';
 
       /* Ajustement du contenu principal pour laisser la place au bouton hamburger */
       .side-mobile .content {
-        margin-top: 45px;
+        margin-top: 40px;
       }
     `,
   ],

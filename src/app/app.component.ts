@@ -14,7 +14,17 @@ import { OrdersService } from './services/orders/orders.service';
   selector: 'app-root',
   imports: [RouterOutlet, HeaderComponent, FooterComponent],
   templateUrl: './app.component.html',
-  styleUrls: [],
+  styles: [`
+  .class-app{
+    padding-top: 110px;
+    min-height: 100vh;
+  }
+  @media (max-width: 768px) {
+    .class-app{
+    padding-top: 88px;
+   }
+  }
+    `],
 })
 export class AppComponent {
   title = 'flowersOum';

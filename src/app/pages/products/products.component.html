@@ -1,5 +1,5 @@
 <app-banner-title
-  [title]="'Tous les produits de Flowers Oum'"
+  [title]="'Tous les produits'"
   [underTitle]="
     'Des produits pensés pour sublimer vos instants précieux.'
   "
@@ -13,8 +13,8 @@
 <div *ngIf="!loading" class="container my-5">
   <div class="row">
     <div class="col-md-4 mt-2" *ngFor="let product of products">
-      <div class="card product-card">
-        <img [src]="product.image" class="card-img-top product-img" alt="{{ product.nom }}">
+      <div class="card  hover-card">
+        <img [src]="product.image" class="card-img-top" alt="{{ product.nom }}">
         <div class="card-body ">
           <h5 class="card-title">{{ product.nom }}</h5>
           <p class="card-text price">{{ product.prix }} $</p>

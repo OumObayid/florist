@@ -46,17 +46,28 @@
   <!-- Navbar principale -->
   <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
     <div class="container">
+       <!-- Bouton toggle à gauche -->
+    <button class="navbar-toggler me-auto" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+     <!-- Icône panier visible sur mobile -->
+    <a href="#" class="cart-icone d-lg-none me-4" (click)="toggleCartSlide($event)">
+      <span class="position-relative d-inline-block">
+        <i class="fas fa-shopping-cart fa-lg fs-5"></i>
+        <span *ngIf="cartCount > 0" class="position-absolute start-100 translate-middle badge rounded-pill" style="font-size: 10px; background-color: orange;">
+          {{ cartCount }}
+          <span class="visually-hidden">articles dans le panier</span>
+        </span>
+      </span>
+    </a>
       <!-- Logo -->
       <a class="logo" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
         Flower's Oum
       </a>
 
-      <!-- Bouton toggle pour mobile -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-        data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+     
 
       <!-- Liens du menu collapsible -->
       <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -157,7 +168,7 @@
           </ng-container>
 
           <!-- Icône panier -->
-          <li class="nav-item mt-md-2 mb-2 mb-md-0">
+          <li class="d-none d-sm-block nav-item mt-md-2 mb-2 mb-md-0">
             <a href="#" (click)="toggleCartSlide($event)">
               <span class="position-relative d-inline-block">
                 <i class="fas fa-shopping-cart fa-lg fs-4"></i>

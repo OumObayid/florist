@@ -3,7 +3,7 @@
   Fournit un contexte sur les différentes catégories disponibles dans la boutique
 -->
 <app-banner-title
-  [title]="'Tous les categories de Flowers Oum'"
+  [title]="'Tous les categories'"
   [underTitle]="'Des bouquets variés, classés par catégories pour chaque moment.'"
 >
 </app-banner-title>
@@ -11,12 +11,12 @@
 <div class="container my-5">
   <div class="row">
     <!-- Boucle sur toutes les catégories pour les afficher sous forme de cartes -->
-    <div class="col-md-4 mt-2" *ngFor="let categorie of categories">
-      <div class="card categorie-card">
+    <div class="col-md-4 mt-2 " *ngFor="let categorie of categories">
+      <div class="card hover-card">
         <!-- Image de la catégorie -->
         <img
           [src]="categorie.image"
-          class="card-img-top categorie-img"
+          class="card-img-top"
           alt="{{ categorie.nom }}"
         />
         <div class="card-body">

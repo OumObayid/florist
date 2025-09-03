@@ -29,6 +29,11 @@
   color: var(--orange);
 }
 
+/* panier mobile*/
+.cart-icone{
+  color: var(--gris);             /* gris foncé par défaut */
+  text-decoration: none;
+}
 /* ----- Liens navbar généraux ----- */
 .navbar-nav a{
   color: var(--gris);             /* gris foncé par défaut */
@@ -36,15 +41,14 @@
   padding: 8px 12px;
   transition: color 0.3s ease;
   font-size: 1.1rem;
+
 }
 
-.navbar-nav a:hover,
-.logo:hover {
+.navbar-nav a:hover,.cart-icone a:hover {
   color: var(--orange);              /* au survol */
 }
 
-.navbar-nav a.active,
-.logo.active {
+.navbar-nav a.active{
   color: var(--gris-clair);             /* gris clair si actif */
 }
 
@@ -251,4 +255,11 @@ nav .slider-cart{
 }
 .cart-body::-webkit-scrollbar-thumb:hover {
   background: #999;
+}
+
+@media (max-width: 768px) {
+.logo{
+  font-size: 25px !important;
+}
+
 }

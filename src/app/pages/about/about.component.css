@@ -1,6 +1,6 @@
 .about-img {
   width: 100%;
-  max-height: 450px; /* Limite la hauteur pour que ça reste cohérent avec le texte */
+  max-height: 400px; /* Limite la hauteur pour que ça reste cohérent avec le texte */
   object-fit: cover; /* recadrage si nécessaire */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
